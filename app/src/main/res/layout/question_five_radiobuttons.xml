@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/surveyQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="1. In general, would you say your health is:"/>
+
+
+
+    <RadioGroup
+        android:id="@+id/fiveQuestionRadiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp">
+
+        <RadioButton
+            android:id="@+id/optionOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="one"/>
+
+        <RadioButton
+            android:id="@+id/optionTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="two"/>
+
+        <RadioButton
+            android:id="@+id/optionThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="three"/>
+
+        <RadioButton
+            android:id="@+id/optionFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="four"/>
+
+        <RadioButton
+            android:id="@+id/optionFive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="five"/>
+
+    </RadioGroup>
+
+
+</LinearLayout>
