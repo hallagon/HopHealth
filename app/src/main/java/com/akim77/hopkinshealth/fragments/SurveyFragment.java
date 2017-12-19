@@ -16,14 +16,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.akim77.hopkinshealth.R;
-import com.akim77.hopkinshealth.RecyclerAdapter;
 import com.akim77.hopkinshealth.SubmissionManager;
 import com.akim77.hopkinshealth.SurveyAdapter;
-import com.akim77.hopkinshealth.questionModels.QuestionWithFiveAnswers;
+import com.akim77.hopkinshealth.questionModels.VerticalQuestion;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -126,14 +124,14 @@ public class SurveyFragment extends Fragment {
     }
 
     private void addQuestions(List<Object> list){
-        QuestionWithFiveAnswers q1 = new QuestionWithFiveAnswers("1. In general, would you say your health is:", "Excellent", "Very good", "Good", "Fair", "Poor");
-        QuestionWithFiveAnswers q2 = new QuestionWithFiveAnswers("2. Compared to one year ago, how would you rate your health in general now?", "Much better now than one year ago", "Somewhat better now than one year ago", "About the same", "Somewhat worse now than one year ago", "Much worse now than one year ago");
-        QuestionWithFiveAnswers q20 = new QuestionWithFiveAnswers("20. During the past 4 weeks, to what extent has your physical health or emotional " +
+        VerticalQuestion q1 = new VerticalQuestion("1. In general, would you say your health is:", "Excellent", "Very good", "Good", "Fair", "Poor");
+        VerticalQuestion q2 = new VerticalQuestion("2. Compared to one year ago, how would you rate your health in general now?", "Much better now than one year ago", "Somewhat better now than one year ago", "About the same", "Somewhat worse now than one year ago", "Much worse now than one year ago");
+        VerticalQuestion q20 = new VerticalQuestion("20. During the past 4 weeks, to what extent has your physical health or emotional " +
                 "problems interfered with your normal social activities with family, friends, neighbors, or " +
                 "groups?", "Not at all", "Slightly", "Moderately", "Quite a bit", "Extremely");
-        QuestionWithFiveAnswers q22 = new QuestionWithFiveAnswers("22. During the past 4 weeks, how much did pain interfere with your normal work\n" +
+        VerticalQuestion q22 = new VerticalQuestion("22. During the past 4 weeks, how much did pain interfere with your normal work\n" +
                 "(including both work outside the home and housework)?", "Not at all", "A little bit", "Moderately", "Quite a bit", "Extremely");
-        QuestionWithFiveAnswers q32 = new QuestionWithFiveAnswers("32. During the past 4 weeks, how much of the time has your physical health or emotional\n" +
+        VerticalQuestion q32 = new VerticalQuestion("32. During the past 4 weeks, how much of the time has your physical health or emotional\n" +
                 "problems interfered with your social activities (like visiting with friends, relatives, etc.)?", "All of the time", "Most of the time", "Some of the time", "A little of the time", "None of the time");
         list.add(q1);
         list.add(q2);

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.akim77.hopkinshealth.examples.UserListActivity;
 import com.akim77.hopkinshealth.examples.UserListsActivity;
 import com.akim77.hopkinshealth.examples.UsersFragment;
+import com.akim77.hopkinshealth.fragments.DynamicSurveyFragment;
 import com.akim77.hopkinshealth.fragments.FeedbackFragment;
 import com.akim77.hopkinshealth.fragments.SurveyFragment;
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_survey:
                     if(currentFragment != 1) {
-                        fragmentTransaction.replace(android.R.id.content, new SurveyFragment());
+                        fragmentTransaction.replace(android.R.id.content, new DynamicSurveyFragment());
                         fragmentTransaction.commit();
                         currentFragment = 1;
                     }
@@ -67,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            SurveyFragment surveyFragment = new SurveyFragment();
+            DynamicSurveyFragment dynamicSurveyFragment = new DynamicSurveyFragment();
 
-            fragmentTransaction.replace(android.R.id.content, surveyFragment);
+            fragmentTransaction.replace(android.R.id.content, dynamicSurveyFragment);
             fragmentTransaction.commit();
             currentFragment = 1;
         }

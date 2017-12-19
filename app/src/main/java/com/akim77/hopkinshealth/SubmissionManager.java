@@ -13,6 +13,8 @@ import java.util.SortedSet;
  */
 
 public class SubmissionManager {
+    public final int QUESTION_COUNT = 36;
+
     public static SubmissionManager instance = new SubmissionManager();
 
     private Map<Integer, Integer> submissionMap = new HashMap<>();
@@ -26,7 +28,7 @@ public class SubmissionManager {
     }
 
     public boolean isFormComplete(){
-        return (submissionMap.size() == 5);
+        return (submissionMap.size() == QUESTION_COUNT);
     }
 
     public String getMapToString(){

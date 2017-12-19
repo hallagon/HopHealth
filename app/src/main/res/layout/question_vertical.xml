@@ -2,53 +2,63 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp">
 
     <TextView
         android:id="@+id/surveyQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:text="1. In general, would you say your health is:"/>
+        android:text="1. In general, would you say your health is:"
+        android:textStyle="bold"
+        android:paddingTop="20dp"/>
 
 
 
     <RadioGroup
-        android:id="@+id/fiveQuestionRadiogroup"
+        android:id="@+id/verticalQuestionRadiogroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="20dp">
+        android:paddingLeft="0dp">
 
         <RadioButton
-            android:id="@+id/optionOne"
+            android:id="@+id/verticalQuestionOptionOne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="one"/>
 
         <RadioButton
-            android:id="@+id/optionTwo"
+            android:id="@+id/verticalQuestionOptionTwo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="two"/>
 
         <RadioButton
-            android:id="@+id/optionThree"
+            android:id="@+id/verticalQuestionOptionThree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="three"/>
 
         <RadioButton
-            android:id="@+id/optionFour"
+            android:id="@+id/verticalQuestionOptionFour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="four"/>
 
         <RadioButton
-            android:id="@+id/optionFive"
+            android:id="@+id/verticalQuestionOptionFive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="five"/>
+
+        <RadioButton
+            android:id="@+id/verticalQuestionOptionSix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="six"/>
 
     </RadioGroup>
 

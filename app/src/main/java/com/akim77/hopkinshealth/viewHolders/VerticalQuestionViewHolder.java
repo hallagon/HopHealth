@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.akim77.hopkinshealth.R;
 import com.akim77.hopkinshealth.SubmissionManager;
@@ -14,22 +13,23 @@ import com.akim77.hopkinshealth.SubmissionManager;
  * Created by Anthony Kim on 12/7/2017.
  */
 
-public class FiveQuestionViewHolder extends RecyclerView.ViewHolder {
+public class VerticalQuestionViewHolder extends RecyclerView.ViewHolder {
 
     private TextView question;
     private RadioGroup radioGroup;
-    private RadioButton rb1, rb2, rb3, rb4, rb5;
+    private RadioButton rb1, rb2, rb3, rb4, rb5, rb6;
 
-    public FiveQuestionViewHolder(View itemView) {
+    public VerticalQuestionViewHolder(View itemView) {
         super(itemView);
 
         question = (TextView) itemView.findViewById(R.id.surveyQuestion);
-        radioGroup = (RadioGroup) itemView.findViewById(R.id.fiveQuestionRadiogroup);
-        rb1 = (RadioButton) itemView.findViewById(R.id.optionOne);
-        rb2 = (RadioButton) itemView.findViewById(R.id.optionTwo);
-        rb3 = (RadioButton) itemView.findViewById(R.id.optionThree);
-        rb4 = (RadioButton) itemView.findViewById(R.id.optionFour);
-        rb5 = (RadioButton) itemView.findViewById(R.id.optionFive);
+        radioGroup = (RadioGroup) itemView.findViewById(R.id.verticalQuestionRadiogroup);
+        rb1 = (RadioButton) itemView.findViewById(R.id.verticalQuestionOptionOne);
+        rb2 = (RadioButton) itemView.findViewById(R.id.verticalQuestionOptionTwo);
+        rb3 = (RadioButton) itemView.findViewById(R.id.verticalQuestionOptionThree);
+        rb4 = (RadioButton) itemView.findViewById(R.id.verticalQuestionOptionFour);
+        rb5 = (RadioButton) itemView.findViewById(R.id.verticalQuestionOptionFive);
+        rb6 = (RadioButton) itemView.findViewById(R.id.verticalQuestionOptionSix);
 
         rb1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +63,13 @@ public class FiveQuestionViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 SubmissionManager.instance.updateEntry((Integer) radioGroup.getTag(), 4);
+            }
+        });
+
+        rb6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SubmissionManager.instance.updateEntry((Integer) radioGroup.getTag(), 5);
             }
         });
 
@@ -123,5 +130,13 @@ public class FiveQuestionViewHolder extends RecyclerView.ViewHolder {
 
     public void setRb5(RadioButton rb5) {
         this.rb5 = rb5;
+    }
+
+    public RadioButton getRb6() {
+        return rb6;
+    }
+
+    public void setRb6(RadioButton rb6) {
+        this.rb6 = rb6;
     }
 }

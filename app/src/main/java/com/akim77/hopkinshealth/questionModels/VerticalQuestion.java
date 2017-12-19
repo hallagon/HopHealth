@@ -4,19 +4,39 @@ package com.akim77.hopkinshealth.questionModels;
  * Created by Anthony Kim on 12/7/2017.
  */
 
-public class QuestionWithFiveAnswers {
+public class VerticalQuestion {
     private String question;
-    private String optionOne, optionTwo, optionThree, optionFour, optionFive;
+    private String optionOne, optionTwo, optionThree, optionFour, optionFive, optionSix;
     private int qNumber = 0;
     private int choice = 0;
+    private int multipleChoiceType = 0; //0 is default uninitialized, 5 for five choice question, 6 for six choices, so on.
 
-    public QuestionWithFiveAnswers(String question, String optionOne, String optionTwo, String optionThree, String optionFour, String optionFive) {
+    public VerticalQuestion(String question, String optionOne, String optionTwo) {
+        this.question = question;
+        this.optionOne = optionOne;
+        this.optionTwo = optionTwo;
+        this.multipleChoiceType = 2;
+    }
+
+    public VerticalQuestion(String question, String optionOne, String optionTwo, String optionThree, String optionFour, String optionFive) {
         this.question = question;
         this.optionOne = optionOne;
         this.optionTwo = optionTwo;
         this.optionThree = optionThree;
         this.optionFour = optionFour;
         this.optionFive = optionFive;
+        this.multipleChoiceType = 5;
+    }
+
+    public VerticalQuestion(String question, String optionOne, String optionTwo, String optionThree, String optionFour, String optionFive, String optionSix) {
+        this.question = question;
+        this.optionOne = optionOne;
+        this.optionTwo = optionTwo;
+        this.optionThree = optionThree;
+        this.optionFour = optionFour;
+        this.optionFive = optionFive;
+        this.optionSix = optionSix;
+        this.multipleChoiceType = 6;
     }
 
     public String getQuestion() {
@@ -65,6 +85,22 @@ public class QuestionWithFiveAnswers {
 
     public void setOptionFive(String optionFive) {
         this.optionFive = optionFive;
+    }
+
+    public String getOptionSix() {
+        return optionSix;
+    }
+
+    public void setOptionSix(String optionSix) {
+        this.optionSix = optionSix;
+    }
+
+    public int getMultipleChoiceType() {
+        return multipleChoiceType;
+    }
+
+    public void setMultipleChoiceType(int multipleChoiceType) {
+        this.multipleChoiceType = multipleChoiceType;
     }
 
     public int getChoice() {
