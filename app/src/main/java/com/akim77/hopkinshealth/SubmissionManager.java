@@ -1,5 +1,11 @@
 package com.akim77.hopkinshealth;
 
+import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.Arrays;
@@ -12,7 +18,7 @@ import java.util.SortedSet;
  * Created by Anthony Kim on 12/7/2017.
  */
 
-public class SubmissionManager {
+public class SubmissionManager extends Application{
     public final int QUESTION_COUNT = 36;
 
     public static SubmissionManager instance = new SubmissionManager();
@@ -30,6 +36,20 @@ public class SubmissionManager {
     public boolean isFormComplete(){
         return (submissionMap.size() == QUESTION_COUNT);
     }
+
+//    public void submitSurvey() {
+//        if(instance.isFormComplete()) {
+//            SharedPreferences sharedPref = MyApplication.getContext().getSharedPreferences("submissions", Context.MODE_PRIVATE);
+//            SharedPreferences.Editor editor = sharedPref.edit();
+//            //saves a key-value set consisting of current time and submission data
+//            editor.putString(System.currentTimeMillis() + "", SubmissionManager.instance.prettyMapToString());
+//            editor.commit();
+//
+//            sendEmail();
+//        } else {
+//            Toast.makeText(MyApplication.getContext(), "Current form submission state: " + instance.getMapSize() + " / " + instance.QUESTION_COUNT, Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     public String getMapToString(){
         return submissionMap.toString();
@@ -67,4 +87,29 @@ public class SubmissionManager {
         if(submissionMap.containsKey(position)) return submissionMap.get(position);
         else return -1;
     }
+
+//    protected void sendEmail() {
+//        Log.i("Send email", "");
+//
+//        String[] TO = {"anthonysunghoonkim@gmail.com"};
+//        String[] CC = {};
+//        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//        emailIntent.setData(Uri.parse("mailto:"));
+//        emailIntent.setType("text/plain");
+//
+//
+//        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+////        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Survey results");
+//        emailIntent.putExtra(Intent.EXTRA_TEXT, SubmissionManager.instance.prettyMapToString());
+//
+//        try {
+//            MyApplication.getContext().startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+//            Log.i("Finished sending email.", "");
+//            Toast.makeText(MyApplication.getContext(), "Sent mail.", Toast.LENGTH_SHORT).show();
+//        } catch (android.content.ActivityNotFoundException ex) {
+//            Toast.makeText(MyApplication.getContext(),
+//                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }

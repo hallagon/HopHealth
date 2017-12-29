@@ -23,23 +23,17 @@ import com.akim77.hopkinshealth.R;
 import com.akim77.hopkinshealth.SubmissionManager;
 import com.akim77.hopkinshealth.SurveyAdapter;
 import com.akim77.hopkinshealth.questionModels.HorizontalQuestion;
+import com.akim77.hopkinshealth.questionModels.SubmitButton;
 import com.akim77.hopkinshealth.questionModels.VerticalQuestion;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SurveyFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- */
+
 public class DynamicSurveyFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private RecyclerView recyclerView;
-    private FloatingActionButton mailFab;
-    private Button submitButton;
 
     private List<Object> qfaList = new ArrayList<>();
 
@@ -55,24 +49,7 @@ public class DynamicSurveyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dynamic_survey, container, false);
 
         addQuestions(qfaList);
-        mailFab = (FloatingActionButton) view.findViewById(R.id.mailFab);
-        mailFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(SubmissionManager.instance.isFormComplete()) {
 
-                    SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    //saves a key-value set consisting of current time and submission data
-                    editor.putString(System.currentTimeMillis() + "", SubmissionManager.instance.prettyMapToString());
-                    editor.commit();
-
-                    sendEmail();
-
-                }
-                else Toast.makeText(view.getContext(), "Current form submission state: " + SubmissionManager.instance.getMapSize() + " / " + SubmissionManager.instance.QUESTION_COUNT, Toast.LENGTH_SHORT).show();
-            }
-        });
 //
 //        submitButton = (Button) view.findViewById(R.id.submitButton);
 //        submitButton.setOnClickListener(new View.OnClickListener() {
@@ -201,6 +178,7 @@ public class DynamicSurveyFragment extends Fragment {
         HorizontalQuestion q35 = new HorizontalQuestion("", "35. I expect my health to get worse", "", "", "", "", "", false);
         HorizontalQuestion q36 = new HorizontalQuestion("", "36. My health is excellent", "", "", "", "", "", false);
 
+        SubmitButton submitButton = new SubmitButton();
 
         list.add(q1);
         list.add(q2);
@@ -244,32 +222,9 @@ public class DynamicSurveyFragment extends Fragment {
         list.add(q35);
         list.add(q36);
 
-
-    }
-
-    protected void sendEmail() {
-        Log.i("Send email", "");
-
-        String[] TO = {"anthonysunghoonkim@gmail.com"};
-        String[] CC = {};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
+        list.add(submitButton);
 
 
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-//        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Survey results");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, SubmissionManager.instance.prettyMapToString());
-
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            getActivity().finish();
-            Log.i("Finished sending email.", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(getActivity(),
-                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
     }
 
 

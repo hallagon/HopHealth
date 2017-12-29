@@ -9,8 +9,10 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 
 import com.akim77.hopkinshealth.questionModels.HorizontalQuestion;
+import com.akim77.hopkinshealth.questionModels.SubmitButton;
 import com.akim77.hopkinshealth.questionModels.VerticalQuestion;
 import com.akim77.hopkinshealth.viewHolders.HorizontalQuestionViewHolder;
+import com.akim77.hopkinshealth.viewHolders.SubmitButtonViewHolder;
 import com.akim77.hopkinshealth.viewHolders.VerticalQuestionViewHolder;
 
 import java.util.List;
@@ -26,7 +28,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     // The items to display in your RecyclerView
     private List<Object> items;
 
-    private final int VERTICAL_QUESTION = 0, HORIZONTAL_QUESTION = 1;
+    private final int VERTICAL_QUESTION = 0, HORIZONTAL_QUESTION = 1, SUBMIT_BUTTON = 2;
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public SurveyAdapter(List<Object> items) {
@@ -45,6 +47,8 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             return VERTICAL_QUESTION;
         } else if (items.get(position) instanceof HorizontalQuestion) {
             return HORIZONTAL_QUESTION;
+        } else if (items.get(position) instanceof SubmitButton){
+            return SUBMIT_BUTTON;
         }
         return -1;    }
 
@@ -62,6 +66,11 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             case HORIZONTAL_QUESTION:
                 View v2 = inflater.inflate(R.layout.question_horizontal, viewGroup, false);
                 viewHolder = new HorizontalQuestionViewHolder(v2);
+                break;
+
+            case SUBMIT_BUTTON:
+                View v3 = inflater.inflate(R.layout.submit_button, viewGroup, false);
+                viewHolder = new SubmitButtonViewHolder(v3);
                 break;
             default:
                 //View v = inflater.inflate(android.R.layout.simple_list_item_1, viewGroup, false);
@@ -98,6 +107,9 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     case 6: configureViewHolderForHorizontalTwoAnswerQuestion(vh2, position, hQuestion.getMultipleChoiceType()); break;
                     default: break;
                 }
+                break;
+
+            case SUBMIT_BUTTON:
                 break;
 
             default:

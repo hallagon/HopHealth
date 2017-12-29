@@ -1,25 +1,16 @@
 package com.akim77.hopkinshealth;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
-import com.akim77.hopkinshealth.examples.UserListActivity;
-import com.akim77.hopkinshealth.examples.UserListsActivity;
-import com.akim77.hopkinshealth.examples.UsersFragment;
 import com.akim77.hopkinshealth.fragments.DynamicSurveyFragment;
 import com.akim77.hopkinshealth.fragments.FeedbackFragment;
-import com.akim77.hopkinshealth.fragments.SurveyFragment;
 
 public class MainActivity extends AppCompatActivity {
 
