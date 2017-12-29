@@ -119,6 +119,14 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             vh1.getRb5().setText(question.getOptionFive());
             vh1.getRb6().setVisibility(GONE);
         }
+        switch(SubmissionManager.instance.getSelectedRadioButton(position)){
+            case 0: vh1.getRb1().setChecked(true); break;
+            case 1: vh1.getRb2().setChecked(true); break;
+            case 2: vh1.getRb3().setChecked(true); break;
+            case 3: vh1.getRb4().setChecked(true); break;
+            case 4: vh1.getRb5().setChecked(true); break;
+            default: break;
+        }
     }
 
     private void configureViewHolderForVerticalSixAnswerQuestion(VerticalQuestionViewHolder vh1, int position) {
@@ -133,10 +141,22 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             vh1.getRb5().setText(question.getOptionFive());
             vh1.getRb6().setText(question.getOptionSix());
         }
+
+        switch(SubmissionManager.instance.getSelectedRadioButton(position)){
+            case 0: vh1.getRb1().setChecked(true); break;
+            case 1: vh1.getRb2().setChecked(true); break;
+            case 2: vh1.getRb3().setChecked(true); break;
+            case 3: vh1.getRb4().setChecked(true); break;
+            case 4: vh1.getRb5().setChecked(true); break;
+            case 5: vh1.getRb6().setChecked(true); break;
+            default: break;
+        }
+
     }
 
     private void configureViewHolderForHorizontalTwoAnswerQuestion(HorizontalQuestionViewHolder vh, int position, int choiceNumber) {
         Log.d("ITEMS", "items size" + items.size() + " and items position " + position);
+        if(choiceNumber > 4) vh.getQuestion().setWidth(100);
 
         HorizontalQuestion question = (HorizontalQuestion) items.get(position);
         if(question.isContextSettingQuestion()){
@@ -145,10 +165,10 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             vh.getChoiceText2().setText(question.getOptionTwo());
         } else {
             vh.getQuestionContext().setVisibility(GONE);
+            vh.getChoiceLabels().setVisibility(GONE);
             vh.getChoiceText1().setVisibility(GONE);
             vh.getChoiceText2().setVisibility(GONE);
         }
-        vh.getQuestion().setText(question.getQuestion());
 
 
         if(choiceNumber > 2){
@@ -178,5 +198,18 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             vh.getChoiceText6().setVisibility(GONE);
             vh.getRb6().setVisibility(GONE);
         }
+
+        switch(SubmissionManager.instance.getSelectedRadioButton(position)){
+            case 0: vh.getRb1().setChecked(true); break;
+            case 1: vh.getRb2().setChecked(true); break;
+            case 2: vh.getRb3().setChecked(true); break;
+            case 3: vh.getRb4().setChecked(true); break;
+            case 4: vh.getRb5().setChecked(true); break;
+            case 5: vh.getRb6().setChecked(true); break;
+            default: break;
+        }
+
+        vh.getQuestion().setText(question.getQuestion());
+
     }
 }

@@ -2,6 +2,7 @@ package com.akim77.hopkinshealth.viewHolders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -37,6 +38,13 @@ public class VerticalQuestionViewHolder extends RecyclerView.ViewHolder {
                 SubmissionManager.instance.updateEntry((Integer) radioGroup.getTag(), 0);
             }
         });
+//
+//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+//
+//            }
+//        });
 
         rb2.setOnClickListener(new View.OnClickListener() {
             @Override

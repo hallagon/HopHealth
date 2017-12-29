@@ -18,117 +18,81 @@
         />
 
 
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
 
-        <LinearLayout
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/horizontalChoicesTextLayout"
-            android:layout_alignParentRight="true"
-            >
 
-            <TextView
-                android:id="@+id/horizontalChoicesTextOne"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="All of the time"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                />
-
-            <TextView
-                android:id="@+id/horizontalChoicesTextTwo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="All of the time"
-                android:layout_weight="1"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:id="@+id/horizontalChoicesTextThree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="All of the time"
-                android:layout_weight="1"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:id="@+id/horizontalChoicesTextFour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="All of the time"
-                android:layout_weight="1"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:id="@+id/horizontalChoicesTextFive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="All of the time"
-                android:layout_weight="1"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:id="@+id/horizontalChoicesTextSix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="All of the time"
-                android:layout_weight="1"
-                android:textAlignment="center"/>
-
-        </LinearLayout>
 
         <RadioGroup
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@id/horizontalChoicesTextLayout"
-            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/horizontalChoicesQuestion"
+            android:layout_alignTop="@id/horizontalChoicesQuestion"
+            android:layout_marginBottom="5dp"
             android:id="@+id/horizontalQuestionRadioGroup">
 
             <RadioButton
                 android:id="@+id/horizontalQuestionOptionOne"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
+                android:textAlignment="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/custom_button_background"
                 android:text="1"
                 android:layout_weight="1"/>
 
             <RadioButton
                 android:id="@+id/horizontalQuestionOptionTwo"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
+                android:textAlignment="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/custom_button_background"
                 android:text="2"
                 android:layout_weight="1"/>
 
             <RadioButton
                 android:id="@+id/horizontalQuestionOptionThree"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
+                android:textAlignment="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/custom_button_background"
                 android:text="3"
                 android:layout_weight="1"/>
 
             <RadioButton
                 android:id="@+id/horizontalQuestionOptionFour"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
+                android:textAlignment="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/custom_button_background"
                 android:text="4"
                 android:layout_weight="1"/>
 
             <RadioButton
                 android:id="@+id/horizontalQuestionOptionFive"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
+                android:textAlignment="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/custom_button_background"
                 android:text="5"
                 android:layout_weight="1"/>
 
             <RadioButton
                 android:id="@+id/horizontalQuestionOptionSix"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
+                android:textAlignment="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/custom_button_background"
                 android:text="6"
                 android:layout_weight="1"/>
 
@@ -136,15 +100,84 @@
 
         <TextView
             android:id="@+id/horizontalChoicesQuestion"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="25. Have you felt so down in the dumps that nothing could cheer you up?"
             android:gravity="left"
-            android:layout_alignTop="@id/horizontalQuestionRadioGroup"
-            android:layout_toLeftOf="@id/horizontalQuestionRadioGroup"
-            android:layout_gravity="start"
             android:textColor="@android:color/black"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@id/horizontalChoicesTextLayout"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/horizontalChoicesTextLayout"
+            android:layout_toRightOf="@id/horizontalChoicesQuestion"
+            >
+
+            <TextView
+                android:id="@+id/horizontalChoicesTextOne"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_button_background"
+                android:text="All of the time"
+                android:layout_weight="1"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/horizontalChoicesTextTwo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_button_background"
+                android:text="All of the time"
+                android:layout_weight="1"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/horizontalChoicesTextThree"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_button_background"
+                android:text="All of the time"
+                android:layout_weight="1"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/horizontalChoicesTextFour"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_button_background"
+                android:text="All of the time"
+                android:layout_weight="1"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/horizontalChoicesTextFive"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_button_background"
+                android:text="All of the time"
+                android:layout_weight="1"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/horizontalChoicesTextSix"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_button_background"
+                android:text="All of the time"
+                android:layout_weight="1"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
 
 <!--
         <View

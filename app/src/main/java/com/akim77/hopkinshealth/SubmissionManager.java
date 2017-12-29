@@ -59,4 +59,12 @@ public class SubmissionManager {
         return result;
     }
 
+    public Map<Integer, Integer> getSubmissionMap() {
+        return submissionMap;
+    }
+
+    public int getSelectedRadioButton(int position){
+        if(submissionMap.containsKey(position)) return submissionMap.get(position);
+        else return -1;
+    }
 }

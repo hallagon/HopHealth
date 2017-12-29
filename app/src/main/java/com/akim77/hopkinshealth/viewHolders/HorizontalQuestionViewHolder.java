@@ -2,6 +2,7 @@ package com.akim77.hopkinshealth.viewHolders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ public class HorizontalQuestionViewHolder extends RecyclerView.ViewHolder {
     private TextView choiceText1, choiceText2, choiceText3, choiceText4, choiceText5, choiceText6;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4, rb5, rb6;
+    private LinearLayout choiceLabels;
 
     public HorizontalQuestionViewHolder(View itemView) {
         super(itemView);
@@ -39,6 +41,7 @@ public class HorizontalQuestionViewHolder extends RecyclerView.ViewHolder {
         rb4 = (RadioButton) itemView.findViewById(R.id.horizontalQuestionOptionFour);
         rb5 = (RadioButton) itemView.findViewById(R.id.horizontalQuestionOptionFive);
         rb6 = (RadioButton) itemView.findViewById(R.id.horizontalQuestionOptionSix);
+        choiceLabels = (LinearLayout) itemView.findViewById(R.id.horizontalChoicesTextLayout);
 
         rb1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,5 +206,13 @@ public class HorizontalQuestionViewHolder extends RecyclerView.ViewHolder {
 
     public void setChoiceText6(TextView choiceText6) {
         this.choiceText6 = choiceText6;
+    }
+
+    public LinearLayout getChoiceLabels() {
+        return choiceLabels;
+    }
+
+    public void setChoiceLabels(LinearLayout choiceLabels) {
+        this.choiceLabels = choiceLabels;
     }
 }

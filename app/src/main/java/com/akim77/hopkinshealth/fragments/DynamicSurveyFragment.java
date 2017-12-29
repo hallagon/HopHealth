@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.akim77.hopkinshealth.R;
@@ -38,6 +39,7 @@ public class DynamicSurveyFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private RecyclerView recyclerView;
     private FloatingActionButton mailFab;
+    private Button submitButton;
 
     private List<Object> qfaList = new ArrayList<>();
 
@@ -50,7 +52,7 @@ public class DynamicSurveyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_survey, container, false);
+        View view = inflater.inflate(R.layout.fragment_dynamic_survey, container, false);
 
         addQuestions(qfaList);
         mailFab = (FloatingActionButton) view.findViewById(R.id.mailFab);
@@ -71,6 +73,27 @@ public class DynamicSurveyFragment extends Fragment {
                 else Toast.makeText(view.getContext(), "Current form submission state: " + SubmissionManager.instance.getMapSize() + " / " + SubmissionManager.instance.QUESTION_COUNT, Toast.LENGTH_SHORT).show();
             }
         });
+//
+//        submitButton = (Button) view.findViewById(R.id.submitButton);
+//        submitButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(SubmissionManager.instance.isFormComplete()) {
+//
+//                    SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = sharedPref.edit();
+//                    //saves a key-value set consisting of current time and submission data
+//                    editor.putString(System.currentTimeMillis() + "", SubmissionManager.instance.prettyMapToString());
+//                    editor.commit();
+//
+//                    sendEmail();
+//
+//                }
+//                else Toast.makeText(view.getContext(), "Current form submission state: " + SubmissionManager.instance.getMapSize() + " / " + SubmissionManager.instance.QUESTION_COUNT, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        qfaList.add(submitButton);
 
 
         // Inflate the layout for this fragment
