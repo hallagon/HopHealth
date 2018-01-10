@@ -1,6 +1,7 @@
 package com.akim77.hopkinshealth;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -123,12 +124,12 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         Log.d("ITEMS", "items size" + items.size() + " and items position " + position);
         VerticalQuestion question = (VerticalQuestion) items.get(position);
         if (question != null) {
-            vh1.getQuestion().setText(question.getQuestion());
-            vh1.getRb1().setText(question.getOptionOne());
-            vh1.getRb2().setText(question.getOptionTwo());
-            vh1.getRb3().setText(question.getOptionThree());
-            vh1.getRb4().setText(question.getOptionFour());
-            vh1.getRb5().setText(question.getOptionFive());
+            vh1.getQuestion().setText(Html.fromHtml(question.getQuestion()));
+            vh1.getRb1().setText(Html.fromHtml(question.getOptionOne()));
+            vh1.getRb2().setText(Html.fromHtml(question.getOptionTwo()));
+            vh1.getRb3().setText(Html.fromHtml(question.getOptionThree()));
+            vh1.getRb4().setText(Html.fromHtml(question.getOptionFour()));
+            vh1.getRb5().setText(Html.fromHtml(question.getOptionFive()));
             vh1.getRb6().setVisibility(GONE);
         }
         switch(SubmissionManager.instance.getSelectedRadioButton(position)){
@@ -145,13 +146,14 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         Log.d("ITEMS", "items size" + items.size() + " and items position " + position);
         VerticalQuestion question = (VerticalQuestion) items.get(position);
         if (question != null) {
-            vh1.getQuestion().setText(question.getQuestion());
-            vh1.getRb1().setText(question.getOptionOne());
-            vh1.getRb2().setText(question.getOptionTwo());
-            vh1.getRb3().setText(question.getOptionThree());
-            vh1.getRb4().setText(question.getOptionFour());
-            vh1.getRb5().setText(question.getOptionFive());
-            vh1.getRb6().setText(question.getOptionSix());
+            vh1.getQuestion().setText(Html.fromHtml(question.getQuestion()));
+            //vh1.getQuestion().setText(question.getQuestion());
+            vh1.getRb1().setText(Html.fromHtml(question.getOptionOne()));
+            vh1.getRb2().setText(Html.fromHtml(question.getOptionTwo()));
+            vh1.getRb3().setText(Html.fromHtml(question.getOptionThree()));
+            vh1.getRb4().setText(Html.fromHtml(question.getOptionFour()));
+            vh1.getRb5().setText(Html.fromHtml(question.getOptionFive()));
+            vh1.getRb6().setText(Html.fromHtml(question.getOptionSix()));
         }
 
         switch(SubmissionManager.instance.getSelectedRadioButton(position)){
@@ -172,9 +174,9 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         HorizontalQuestion question = (HorizontalQuestion) items.get(position);
         if(question.isContextSettingQuestion()){
-            vh.getQuestionContext().setText(question.getQuestionContext());
-            vh.getChoiceText1().setText(question.getOptionOne());
-            vh.getChoiceText2().setText(question.getOptionTwo());
+            vh.getQuestionContext().setText(Html.fromHtml(question.getQuestionContext()));
+            vh.getChoiceText1().setText(Html.fromHtml(question.getOptionOne()));
+            vh.getChoiceText2().setText(Html.fromHtml(question.getOptionTwo()));
         } else {
             vh.getQuestionContext().setVisibility(GONE);
             vh.getChoiceLabels().setVisibility(GONE);
@@ -184,28 +186,28 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 
         if(choiceNumber > 2){
-            vh.getChoiceText3().setText(question.getOptionThree());
+            vh.getChoiceText3().setText(Html.fromHtml(question.getOptionThree()));
         } else {
             vh.getChoiceText3().setVisibility(GONE);
             vh.getRb3().setVisibility(GONE);
         }
 
         if(choiceNumber > 3){
-            vh.getChoiceText4().setText(question.getOptionFour());
+            vh.getChoiceText4().setText(Html.fromHtml(question.getOptionFour()));
         } else {
             vh.getChoiceText4().setVisibility(GONE);
             vh.getRb4().setVisibility(GONE);
         }
 
         if(choiceNumber > 4){
-            vh.getChoiceText5().setText(question.getOptionFive());
+            vh.getChoiceText5().setText(Html.fromHtml(question.getOptionFive()));
         } else {
             vh.getChoiceText5().setVisibility(GONE);
             vh.getRb5().setVisibility(GONE);
         }
 
         if(choiceNumber > 5){
-            vh.getChoiceText6().setText(question.getOptionSix());
+            vh.getChoiceText6().setText(Html.fromHtml(question.getOptionSix()));
         } else {
             vh.getChoiceText6().setVisibility(GONE);
             vh.getRb6().setVisibility(GONE);
@@ -221,7 +223,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             default: break;
         }
 
-        vh.getQuestion().setText(question.getQuestion());
+        vh.getQuestion().setText(Html.fromHtml(question.getQuestion()));
 
     }
 }

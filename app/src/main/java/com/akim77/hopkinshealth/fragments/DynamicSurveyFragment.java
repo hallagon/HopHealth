@@ -134,33 +134,33 @@ public class DynamicSurveyFragment extends Fragment {
 
     private void addQuestions(List<Object> list){
         VerticalQuestion q1 = new VerticalQuestion("1. In general, would you say your health is:", "Excellent", "Very good", "Good", "Fair", "Poor");
-        VerticalQuestion q2 = new VerticalQuestion("2. Compared to one year ago, how would you rate your health in general now?", "Much better now than one year ago", "Somewhat better now than one year ago", "About the same", "Somewhat worse now than one year ago", "Much worse now than one year ago");
-        HorizontalQuestion q3 = new HorizontalQuestion("The following items are about activities you might do during a typical day. Does your health now limit you in these activities? If so, how much?", "3. Vigorous activities, such as running, lifting heavy objects, participating in strenuous sports", "Yes, limited a lot", "Yes, limited a little", "No, not limited at all", true);
-        HorizontalQuestion q4 = new HorizontalQuestion("", "4. Moderate activities, such as moving a table, pushing a vacuum cleaner, bowling, or playing golf", "", "", "", false);
+        VerticalQuestion q2 = new VerticalQuestion("2. <b>Compared to one year ago</b>, how would you rate your health in general <b>now</b>?", "Much better now than one year ago", "Somewhat better now than one year ago", "About the same", "Somewhat worse now than one year ago", "Much worse now than one year ago");
+        HorizontalQuestion q3 = new HorizontalQuestion("The following items are about activities you might do during a typical day. Does <b>your health now limit you</b> in these activities? If so, how much?", "3. <b>Vigorous activities</b>, such as running, lifting heavy objects, participating in strenuous sports", "Yes, limited a lot", "Yes, limited a little", "No, not limited at all", true);
+        HorizontalQuestion q4 = new HorizontalQuestion("", "4. <b>Moderate activities</b>, such as moving a table, pushing a vacuum cleaner, bowling, or playing golf", "", "", "", false);
         HorizontalQuestion q5 = new HorizontalQuestion("", "5. Lifting or carrying groceries", "", "", "", false);
-        HorizontalQuestion q6 = new HorizontalQuestion("", "6. Climbing several flights of stairs", "", "", "", false);
-        HorizontalQuestion q7 = new HorizontalQuestion("", "7. Climbing one flight of stairs", "", "", "", false);
+        HorizontalQuestion q6 = new HorizontalQuestion("", "6. Climbing <b>several</b> flights of stairs", "", "", "", false);
+        HorizontalQuestion q7 = new HorizontalQuestion("", "7. Climbing <b>one</b> flight of stairs", "", "", "", false);
         HorizontalQuestion q8 = new HorizontalQuestion("", "8. Bending, kneeling, or stooping", "", "", "", false);
-        HorizontalQuestion q9 = new HorizontalQuestion("", "9. Walking more than a mile", "", "", "", false);
-        HorizontalQuestion q10 = new HorizontalQuestion("", "10. Walking several blocks", "", "", "", false);
-        HorizontalQuestion q11 = new HorizontalQuestion("", "11. Walking one block", "", "", "", false);
+        HorizontalQuestion q9 = new HorizontalQuestion("", "9. Walking <b>more than a mile</b>", "", "", "", false);
+        HorizontalQuestion q10 = new HorizontalQuestion("", "10. Walking <b>several blocks</b>", "", "", "", false);
+        HorizontalQuestion q11 = new HorizontalQuestion("", "11. Walking <b>one block</b>", "", "", "", false);
         HorizontalQuestion q12 = new HorizontalQuestion("", "12. Bathing or dressing yourself", "", "", "", false);
-        HorizontalQuestion q13 = new HorizontalQuestion("During the past 4 weeks, have you had any of the following problems with your work or other regular daily activities as a result of your physical health?", "13. Cut down the amount of time you spent on work or other activities", "Yes", "No", true);
-        HorizontalQuestion q14 = new HorizontalQuestion("", "14. Accomplished less than you would like", "", "", false);
-        HorizontalQuestion q15 = new HorizontalQuestion("", "15. Were limited in the kind of work or other activities", "", "", false);
-        HorizontalQuestion q16 = new HorizontalQuestion("", "16. Had difficulty performing the work or other activities (for example, it took extra effort)", "", "", false);
+        HorizontalQuestion q13 = new HorizontalQuestion("During the <b>past 4 weeks</b>, have you had any of the following problems with your work or other regular daily activities <b>as a result of your physical health</b>?", "13. Cut down the <b>amount of time</b> you spent on work or other activities", "Yes", "No", true);
+        HorizontalQuestion q14 = new HorizontalQuestion("", "14. <b>Accomplished less</b> than you would like", "", "", false);
+        HorizontalQuestion q15 = new HorizontalQuestion("", "15. Were limited in the <b>kind</b> of work or other activities", "", "", false);
+        HorizontalQuestion q16 = new HorizontalQuestion("", "16. Had <b>difficulty</b> performing the work or other activities (for example, it took extra effort)", "", "", false);
 
-        HorizontalQuestion q17 = new HorizontalQuestion("During the past 4 weeks, have you had any of the following problems with your work or other regular daily activities as a result of any emotional problems (such as feeling depressed or anxious)?", "17. Cut down the amount of time you spent on work or other activities", "Yes", "No", true);
-        HorizontalQuestion q18 = new HorizontalQuestion("", "18. Accomplished less than you would like", "Yes", "No", false);
-        HorizontalQuestion q19 = new HorizontalQuestion("", "19. Didn't do work or other activities as carefully as usual", "Yes", "No", false);
-        VerticalQuestion q20 = new VerticalQuestion("20. During the past 4 weeks, to what extent has your physical health or emotional " +
+        HorizontalQuestion q17 = new HorizontalQuestion("During the <b>past 4 weeks</b>, have you had any of the following problems with your work or other regular daily activities <b>as a result of any emotional problems</b> (such as feeling depressed or anxious)?", "17. Cut down the <b>amount of time</b> you spent on work or other activities", "Yes", "No", true);
+        HorizontalQuestion q18 = new HorizontalQuestion("", "18. <b>Accomplished less</b> than you would like", "Yes", "No", false);
+        HorizontalQuestion q19 = new HorizontalQuestion("", "19. Didn't do work or other activities as <b>carefully</b> as usual", "Yes", "No", false);
+        VerticalQuestion q20 = new VerticalQuestion("20. During the <b>past 4 weeks</b>, to what extent has your physical health or emotional " +
                 "problems interfered with your normal social activities with family, friends, neighbors, or " +
                 "groups?", "Not at all", "Slightly", "Moderately", "Quite a bit", "Extremely");
-        VerticalQuestion q21 = new VerticalQuestion("21. How much bodily pain have you had during the past 4 weeks?", "1 - None", "2 - Very mild", "3 - Mild", "4 - Moderate", "5 - Severe", "6 - Very severe");
-        VerticalQuestion q22 = new VerticalQuestion("22. During the past 4 weeks, how much did pain interfere with your normal work " +
+        VerticalQuestion q21 = new VerticalQuestion("21. How much <b>bodily</b> pain have you had during the <b>past 4 weeks</b>?", "1 - None", "2 - Very mild", "3 - Mild", "4 - Moderate", "5 - Severe", "6 - Very severe");
+        VerticalQuestion q22 = new VerticalQuestion("22. During the <b>past 4 weeks</b>, how much did <b>pain</b> interfere with your normal work " +
                 "(including both work outside the home and housework)?", "Not at all", "A little bit", "Moderately", "Quite a bit", "Extremely");
 
-        HorizontalQuestion q23 = new HorizontalQuestion("These questions are about how you feel and how things have been with you during the past 4 weeks. For each question, please give the one answer that comes closest to the way you have been feeling.\n\nHow much of the time during the past 4 weeks...", "23. Did you feel full of pep?", "All of the time", "Most of the time", "A good bit of the time", "Some of the time", "A little of the time", "None of the time", true);
+        HorizontalQuestion q23 = new HorizontalQuestion("These questions are about how you feel and how things have been with you during the <b>past 4 weeks</b>. For each question, please give the one answer that comes closest to the way you have been.<br><br>How much of the time during the <b>past 4 weeks...</b>", "23. Did you feel full of pep?", "All of the time", "Most of the time", "A good bit of the time", "Some of the time", "A little of the time", "None of the time", true);
         HorizontalQuestion q24 = new HorizontalQuestion("", "24. Have you been a very nervous person?", "", "", "", "", "", "", false);
         HorizontalQuestion q25 = new HorizontalQuestion("", "25. Have you felt so down in the dumps that nothing could cheer you up?", "", "", "", "", "", "", false);
         HorizontalQuestion q26 = new HorizontalQuestion("", "26. Have you felt calm and peaceful?", "", "", "", "", "", "", false);
@@ -170,10 +170,9 @@ public class DynamicSurveyFragment extends Fragment {
         HorizontalQuestion q30 = new HorizontalQuestion("", "30. Have you been a happy person?", "", "", "", "", "", "", false);
         HorizontalQuestion q31 = new HorizontalQuestion("", "31. Did you feel tired?", "", "", "", "", "", "", false);
 
-        VerticalQuestion q32 = new VerticalQuestion("32. During the past 4 weeks, how much of the time has your physical health or emotional " +
-                "problems interfered with your social activities (like visiting with friends, relatives, etc.)?", "All of the time", "Most of the time", "Some of the time", "A little of the time", "None of the time");
+        VerticalQuestion q32 = new VerticalQuestion("32. During the <b>past 4 weeks</b>, how much of the time has <b>your physical health or emotional problems</b> interfered with your social activities (like visiting with friends, relatives, etc.)?", "All of the time", "Most of the time", "Some of the time", "A little of the time", "None of the time");
 
-        HorizontalQuestion q33 = new HorizontalQuestion("How TRUE or FALSE is each of the following statements for you.", "33. I seem to get sick a little easier than other people", "Definitely true", "Mostly true", "Don't know", "Mostly false", "Definitely false", true);
+        HorizontalQuestion q33 = new HorizontalQuestion("How TRUE or FALSE is <b>each</b> of the following statements for you.", "33. I seem to get sick a little easier than other people", "Definitely true", "Mostly true", "Don't know", "Mostly false", "Definitely false", true);
         HorizontalQuestion q34 = new HorizontalQuestion("", "34. I am as healthy as anybody I know", "", "", "", "", "", false);
         HorizontalQuestion q35 = new HorizontalQuestion("", "35. I expect my health to get worse", "", "", "", "", "", false);
         HorizontalQuestion q36 = new HorizontalQuestion("", "36. My health is excellent", "", "", "", "", "", false);

@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:text="1. In general, would you say your health is:"
-        android:textStyle="bold"
-        android:paddingTop="20dp"/>
+        android:paddingTop="@dimen/questions_margin"
+        android:paddingBottom="@dimen/questions_margin"
+        android:textSize="@dimen/font_size_medium"/>
 
 
 
@@ -22,43 +23,69 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="0dp">
+        android:paddingLeft="0dp"
+        android:paddingBottom="@dimen/questions_margin"
+        android:layout_marginBottom="@dimen/questions_margin">
 
         <RadioButton
             android:id="@+id/verticalQuestionOptionOne"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="one"/>
+            android:layout_height="70dp"
+            android:textAlignment="center"
+            android:button="@android:color/transparent"
+            android:background="@drawable/custom_button_background"
+            android:text="one"
+            android:textSize="@dimen/font_size_medium"/>
 
         <RadioButton
             android:id="@+id/verticalQuestionOptionTwo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="two"/>
+            android:layout_height="70dp"
+            android:textAlignment="center"
+            android:button="@android:color/transparent"
+            android:background="@drawable/custom_button_background"
+            android:text="two"
+            android:textSize="@dimen/font_size_medium"/>
 
         <RadioButton
             android:id="@+id/verticalQuestionOptionThree"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="three"/>
+            android:layout_height="70dp"
+            android:textAlignment="center"
+            android:button="@android:color/transparent"
+            android:background="@drawable/custom_button_background"
+            android:text="three"
+            android:textSize="@dimen/font_size_medium"/>
 
         <RadioButton
             android:id="@+id/verticalQuestionOptionFour"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="four"/>
+            android:layout_height="70dp"
+            android:textAlignment="center"
+            android:button="@android:color/transparent"
+            android:background="@drawable/custom_button_background"
+            android:text="four"
+            android:textSize="@dimen/font_size_medium"/>
 
         <RadioButton
             android:id="@+id/verticalQuestionOptionFive"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="five"/>
+            android:layout_height="70dp"
+            android:textAlignment="center"
+            android:button="@android:color/transparent"
+            android:background="@drawable/custom_button_background"
+            android:text="five"
+            android:textSize="@dimen/font_size_medium"/>
 
         <RadioButton
             android:id="@+id/verticalQuestionOptionSix"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="six"/>
+            android:layout_height="70dp"
+            android:textAlignment="center"
+            android:button="@android:color/transparent"
+            android:background="@drawable/custom_button_background"
+            android:text="six"
+            android:textSize="@dimen/font_size_medium"/>
 
     </RadioGroup>
 

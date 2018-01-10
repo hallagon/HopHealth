@@ -79,7 +79,7 @@ public class FeedbackFragment extends Fragment {
 
         mListView = (ListView) view.findViewById(R.id.listview);
 
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("submissions", Context.MODE_PRIVATE);
         Map<String, ?> allEntries = sharedPref.getAll();
         int mapSize = allEntries.size();
 
