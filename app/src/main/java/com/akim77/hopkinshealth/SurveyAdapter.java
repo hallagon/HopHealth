@@ -11,9 +11,11 @@ import android.widget.RelativeLayout;
 
 import com.akim77.hopkinshealth.questionModels.HorizontalQuestion;
 import com.akim77.hopkinshealth.questionModels.SubmitButton;
+import com.akim77.hopkinshealth.questionModels.SurveyPreface;
 import com.akim77.hopkinshealth.questionModels.VerticalQuestion;
 import com.akim77.hopkinshealth.viewHolders.HorizontalQuestionViewHolder;
 import com.akim77.hopkinshealth.viewHolders.SubmitButtonViewHolder;
+import com.akim77.hopkinshealth.viewHolders.SurveyPrefaceViewHolder;
 import com.akim77.hopkinshealth.viewHolders.VerticalQuestionViewHolder;
 
 import java.util.List;
@@ -29,7 +31,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     // The items to display in your RecyclerView
     private List<Object> items;
 
-    private final int VERTICAL_QUESTION = 0, HORIZONTAL_QUESTION = 1, SUBMIT_BUTTON = 2;
+    private final int VERTICAL_QUESTION = 0, HORIZONTAL_QUESTION = 1, SUBMIT_BUTTON = 2, SURVEY_PREFACE = 3;
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public SurveyAdapter(List<Object> items) {
@@ -50,7 +52,10 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             return HORIZONTAL_QUESTION;
         } else if (items.get(position) instanceof SubmitButton){
             return SUBMIT_BUTTON;
+        } else if (items.get(position) instanceof SurveyPreface){
+            return SURVEY_PREFACE;
         }
+
         return -1;    }
 
     @Override
@@ -73,11 +78,16 @@ public class SurveyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 View v3 = inflater.inflate(R.layout.submit_button, viewGroup, false);
                 viewHolder = new SubmitButtonViewHolder(v3);
                 break;
+
+            case SURVEY_PREFACE:
+                View v4 = inflater.inflate(R.layout.survey_prefaces, viewGroup, false);
+                viewHolder = new SurveyPrefaceViewHolder(v4);
+                break;
+
             default:
                 //View v = inflater.inflate(android.R.layout.simple_list_item_1, viewGroup, false);
                 //viewHolder = new RecyclerViewSimpleTextViewHolder(v);
-                View v = inflater.inflate(R.layout.question_vertical, viewGroup, false);
-                viewHolder = new VerticalQuestionViewHolder(v);
+                viewHolder = null;
                 break;
         }
         return viewHolder;

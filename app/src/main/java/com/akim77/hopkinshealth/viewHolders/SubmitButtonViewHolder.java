@@ -40,7 +40,7 @@ public class SubmitButtonViewHolder extends RecyclerView.ViewHolder {
 
                     sendEmail(context);
                 } else {
-                    Toast.makeText(context, "Current form submission state: " + SubmissionManager.instance.getMapSize() + " / " + SubmissionManager.instance.QUESTION_COUNT, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Please complete question " + SubmissionManager.instance.getNextUpQuestion() + ".", Toast.LENGTH_SHORT).show();
                 }
 
             }

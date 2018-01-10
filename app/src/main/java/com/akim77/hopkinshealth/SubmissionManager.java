@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -16,17 +18,25 @@ import java.util.SortedSet;
 
 /**
  * Created by Anthony Kim on 12/7/2017.
+ * Index is 1-based.
  */
 
 public class SubmissionManager extends Application{
     public final int QUESTION_COUNT = 36;
+    private int nextUp = 1;
 
     public static SubmissionManager instance = new SubmissionManager();
 
     private Map<Integer, Integer> submissionMap = new HashMap<>();
 
+    private RecyclerView rv;
+    private RecyclerView.SmoothScroller scroller;
+    private LinearLayoutManager llm;
+
     public void updateEntry(int questionIndex, int answerIndex){
         submissionMap.put(questionIndex, answerIndex);
+        //rv.smoothScrollToPosition(getNextUpQuestion());
+        scrollToPosition(getNextUpQuestion());
     }
 
     public int getMapSize(){
@@ -74,7 +84,7 @@ public class SubmissionManager extends Application{
         }
         */
         for (int i : keyArray) {
-            result = result + "Q." + (i + 1) + " / A." + (submissionMap.get(i) + 1) + '\n';
+            result = result + "Q." + (i) + " / A." + (submissionMap.get(i) + 1) + '\n';
         }
         return result;
     }
@@ -88,7 +98,34 @@ public class SubmissionManager extends Application{
         else return -1;
     }
 
-//    protected void sendEmail() {
+    public int getNextUpQuestion(){
+        //Log.d("entered nextup", prettyMapToString());
+
+        while(nextUp < 35 && submissionMap.containsKey(nextUp)){
+            nextUp++;
+            Log.d("nextup", nextUp + "");
+        }
+        return nextUp;
+    }
+
+    public void scrollToPosition(int position){
+        scroller.setTargetPosition(position);
+        llm.startSmoothScroll(scroller);
+    }
+
+    public void setRecyclerView(RecyclerView rv){
+        this.rv = rv;
+    }
+
+    public void setScroller(RecyclerView.SmoothScroller scroller) {
+        this.scroller = scroller;
+    }
+
+    public void setLlm(LinearLayoutManager llm) {
+        this.llm = llm;
+    }
+
+    //    protected void sendEmail() {
 //        Log.i("Send email", "");
 //
 //        String[] TO = {"anthonysunghoonkim@gmail.com"};

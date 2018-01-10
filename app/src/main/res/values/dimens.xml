@@ -8,4 +8,7 @@
     <dimen name="font_size_medium">25sp</dimen>
     <dimen name="font_size_large">35sp</dimen>
     <dimen name="font_size_horizontal_question">25sp</dimen>
+    <dimen name="font_size_survey_preface_large">32sp</dimen>
+    <dimen name="font_size_survey_preface_medium">30sp</dimen>
+    <dimen name="font_size_survey_preface_small">25sp</dimen>
 </resources>

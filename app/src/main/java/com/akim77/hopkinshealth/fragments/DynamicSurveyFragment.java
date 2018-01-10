@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSmoothScroller;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
@@ -19,11 +20,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.akim77.hopkinshealth.CustomSnapHelper;
 import com.akim77.hopkinshealth.R;
 import com.akim77.hopkinshealth.SubmissionManager;
 import com.akim77.hopkinshealth.SurveyAdapter;
 import com.akim77.hopkinshealth.questionModels.HorizontalQuestion;
 import com.akim77.hopkinshealth.questionModels.SubmitButton;
+import com.akim77.hopkinshealth.questionModels.SurveyPreface;
 import com.akim77.hopkinshealth.questionModels.VerticalQuestion;
 
 import java.util.ArrayList;
@@ -50,29 +53,6 @@ public class DynamicSurveyFragment extends Fragment {
 
         addQuestions(qfaList);
 
-//
-//        submitButton = (Button) view.findViewById(R.id.submitButton);
-//        submitButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(SubmissionManager.instance.isFormComplete()) {
-//
-//                    SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = sharedPref.edit();
-//                    //saves a key-value set consisting of current time and submission data
-//                    editor.putString(System.currentTimeMillis() + "", SubmissionManager.instance.prettyMapToString());
-//                    editor.commit();
-//
-//                    sendEmail();
-//
-//                }
-//                else Toast.makeText(view.getContext(), "Current form submission state: " + SubmissionManager.instance.getMapSize() + " / " + SubmissionManager.instance.QUESTION_COUNT, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        qfaList.add(submitButton);
-
-
         // Inflate the layout for this fragment
         /*
         LinearLayout mSeekLin = (LinearLayout) view.findViewById(R.id.SurveyLinearLayout);
@@ -82,13 +62,27 @@ public class DynamicSurveyFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.surveyRecyclerView);
         recyclerView.setAdapter(new SurveyAdapter(qfaList));
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        LinearLayoutManager llm = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
+
+        recyclerView.setLayoutManager(llm);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
-//
-//        SnapHelper snapHelper = new LinearSnapHelper();
-//        snapHelper.attachToRecyclerView(recyclerView);
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.smoothScrollToPosition(SubmissionManager.instance.getNextUpQuestion());
+
+        RecyclerView.SmoothScroller smoothScroller = new LinearSmoothScroller(view.getContext()) {
+            @Override protected int getVerticalSnapPreference() {
+                return LinearSmoothScroller.SNAP_TO_START;
+            }
+        };
+
+        SubmissionManager.instance.setRecyclerView(recyclerView);
+        SubmissionManager.instance.setScroller(smoothScroller);
+        SubmissionManager.instance.setLlm(llm);
+
+//        CustomSnapHelper customSnapHelper = new CustomSnapHelper();
+//        customSnapHelper.attachToRecyclerView(recyclerView);
 
         return view;
     }
@@ -133,6 +127,9 @@ public class DynamicSurveyFragment extends Fragment {
     }
 
     private void addQuestions(List<Object> list){
+
+        SurveyPreface preface = new SurveyPreface();
+
         VerticalQuestion q1 = new VerticalQuestion("1. In general, would you say your health is:", "Excellent", "Very good", "Good", "Fair", "Poor");
         VerticalQuestion q2 = new VerticalQuestion("2. <b>Compared to one year ago</b>, how would you rate your health in general <b>now</b>?", "Much better now than one year ago", "Somewhat better now than one year ago", "About the same", "Somewhat worse now than one year ago", "Much worse now than one year ago");
         HorizontalQuestion q3 = new HorizontalQuestion("The following items are about activities you might do during a typical day. Does <b>your health now limit you</b> in these activities? If so, how much?", "3. <b>Vigorous activities</b>, such as running, lifting heavy objects, participating in strenuous sports", "Yes, limited a lot", "Yes, limited a little", "No, not limited at all", true);
@@ -178,6 +175,8 @@ public class DynamicSurveyFragment extends Fragment {
         HorizontalQuestion q36 = new HorizontalQuestion("", "36. My health is excellent", "", "", "", "", "", false);
 
         SubmitButton submitButton = new SubmitButton();
+
+        list.add(preface);
 
         list.add(q1);
         list.add(q2);

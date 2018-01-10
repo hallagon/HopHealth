@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp">
+
+    <TextView
+        android:id="@+id/surveyName"
+        android:paddingTop="@dimen/questions_margin"
+        android:paddingBottom="@dimen/questions_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="36-Item Short Form Survey Instrument (SF-36)"
+        android:textColor="@android:color/holo_purple"
+        android:textStyle="bold"
+        android:textSize="@dimen/font_size_survey_preface_large"
+        />
+
+    <TextView
+        android:id="@+id/surveyTitle"
+        android:paddingTop="@dimen/questions_margin"
+        android:paddingBottom="@dimen/questions_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RAND 36-Item Health Survey 1.0 Questionnaire Items"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/font_size_survey_preface_medium"
+        />
+
+    <TextView
+        android:id="@+id/surveyInstruction"
+        android:paddingTop="@dimen/questions_margin"
+        android:paddingBottom="@dimen/questions_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose one option for each questionnaire item."
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/font_size_survey_preface_small"
+        />
+
+
+
+</LinearLayout>
