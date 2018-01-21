@@ -36,7 +36,7 @@ public class SubmitButtonViewHolder extends RecyclerView.ViewHolder {
                     SharedPreferences.Editor editor = sharedPref.edit();
                     //saves a key-value set consisting of current time and submission data
                     editor.putString(System.currentTimeMillis() + "", SubmissionManager.instance.prettyMapToString());
-                    editor.commit();
+                    editor.apply();
 
                     sendEmail(context);
                 } else {

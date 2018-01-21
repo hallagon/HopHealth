@@ -69,7 +69,8 @@ public class DynamicSurveyFragment extends Fragment {
                 LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.smoothScrollToPosition(SubmissionManager.instance.getNextUpQuestion());
+//        recyclerView.smoothScrollToPosition(SubmissionManager.instance.getNextUpQuestion());
+
 
         RecyclerView.SmoothScroller smoothScroller = new LinearSmoothScroller(view.getContext()) {
             @Override protected int getVerticalSnapPreference() {
@@ -80,6 +81,11 @@ public class DynamicSurveyFragment extends Fragment {
         SubmissionManager.instance.setRecyclerView(recyclerView);
         SubmissionManager.instance.setScroller(smoothScroller);
         SubmissionManager.instance.setLlm(llm);
+
+
+
+        SubmissionManager.instance.scrollToPosition(SubmissionManager.instance.getNextUpQuestion() == 1 ? 0 : SubmissionManager.instance.getNextUpQuestion());
+
 
 //        CustomSnapHelper customSnapHelper = new CustomSnapHelper();
 //        customSnapHelper.attachToRecyclerView(recyclerView);

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.akim77.hopkinshealth.InitialSetupActivity">
+
+    <TextView
+        android:id="@+id/initial_setup_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Patient Data Setup"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:id="@+id/patient_number_linear_layout"
+        android:layout_below="@id/initial_setup_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter patient's ID number:"
+            android:textSize="30sp"
+            />
+
+        <EditText
+            android:id="@+id/edittext_patient_id"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignStart="@+id/textView"
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="17dp"
+            android:hint="Patient ID"
+            android:layout_gravity="right"
+            android:textSize="25sp"
+            android:inputType="number"/>
+
+    </LinearLayout>
+
+
+    <!--
+    <LinearLayout
+        android:id="@+id/button_linear_layout"
+        android:layout_below="@id/patient_number_linear_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+
+        <Button
+            android:id="@+id/button_intervention"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="Intervention"
+            android:textAllCaps="false"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/button_control"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="Control"
+            android:textAllCaps="false"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    -->
+
+    <TextView
+        android:id="@+id/buttons_explanation_textview"
+        android:layout_below="@id/patient_number_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="Select the patient's group:"
+        android:layout_marginLeft="30dp"/>
+
+    <RadioGroup
+        android:id="@+id/radio_buttons_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttons_explanation_textview"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        >
+
+        <RadioButton
+            android:id="@+id/radio_button_intervention_group"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:button="@android:color/transparent"
+            android:background="@drawable/custom_button_background"
+            android:text="Intervention"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="25dp"
+            android:layout_marginRight="15dp"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_button_control_group"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:button="@android:color/transparent"
+            android:background="@drawable/custom_button_background"
+            android:text="Control"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="25dp"
+            android:layout_marginLeft="15dp"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/button_finish_setup"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:text="Finish Setup"
+        android:layout_below="@id/radio_buttons_linear_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textAllCaps="false"
+        android:textSize="25dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        />
+
+
+
+</RelativeLayout>
