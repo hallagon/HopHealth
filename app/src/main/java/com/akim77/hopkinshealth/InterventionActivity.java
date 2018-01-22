@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.akim77.hopkinshealth.fragments.DynamicSurveyFragment;
 import com.akim77.hopkinshealth.fragments.FeedbackFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class InterventionActivity extends AppCompatActivity {
 
     private int currentFragment = 0; //0 if uninitialized, 1 if survey, 2 if feedback, etc
 
@@ -28,19 +28,19 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_survey:
                     if(currentFragment != 1) {
-                        fragmentTransaction.replace(android.R.id.content, new DynamicSurveyFragment());
+                        fragmentTransaction.replace(R.id.rootLayout, new DynamicSurveyFragment());
                         fragmentTransaction.commit();
                         currentFragment = 1;
                     }
-                    else Toast.makeText(MainActivity.this, "already in it!", Toast.LENGTH_SHORT).show();
+                    else Toast.makeText(InterventionActivity.this, "already in it!", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.navigation_feedback:
                     if(currentFragment != 2) {
-                        fragmentTransaction.replace(android.R.id.content, new FeedbackFragment());
+                        fragmentTransaction.replace(R.id.rootLayout, new FeedbackFragment());
                         fragmentTransaction.commit();
                         currentFragment = 2;
                     }
-                    else Toast.makeText(MainActivity.this, "already in it!", Toast.LENGTH_SHORT).show();
+                    else Toast.makeText(InterventionActivity.this, "already in it!", Toast.LENGTH_SHORT).show();
                     return true;
             }
             return false;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_intervention);
 
 
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
             DynamicSurveyFragment dynamicSurveyFragment = new DynamicSurveyFragment();
 
-            fragmentTransaction.replace(android.R.id.content, dynamicSurveyFragment);
+            fragmentTransaction.replace(R.id.rootLayout, dynamicSurveyFragment);
             fragmentTransaction.commit();
             currentFragment = 1;
         }

@@ -44,16 +44,16 @@ public class InitialSetupActivity extends AppCompatActivity {
                         editor.putString("group", "intervention");
                         editor.apply();
 
-                        Intent i = new Intent(InitialSetupActivity.this, MainActivity.class);
+                        Intent i = new Intent(InitialSetupActivity.this, InterventionActivity.class);
                         startActivity(i);
                     } else if (controlRb.isChecked()) {
                         SharedPreferences sharedPref = InitialSetupActivity.this.getSharedPreferences("patientInfo", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putString("patientId", patientId);
-                        editor.putString("group", "intervention");
+                        editor.putString("group", "control");
                         editor.apply();
 
-                        Intent i = new Intent(InitialSetupActivity.this, MainActivity.class);
+                        Intent i = new Intent(InitialSetupActivity.this, ControlActivity.class);
                         startActivity(i);
                     } else {
                         Toast.makeText(InitialSetupActivity.this, "Please select patient group.", Toast.LENGTH_SHORT).show();

@@ -53,12 +53,6 @@ public class DynamicSurveyFragment extends Fragment {
 
         addQuestions(qfaList);
 
-        // Inflate the layout for this fragment
-        /*
-        LinearLayout mSeekLin = (LinearLayout) view.findViewById(R.id.SurveyLinearLayout);
-        CustomSeekbar customSeekBar = new CustomSeekbar(view.getContext(), 5, Color.DKGRAY);
-        customSeekBar.addSeekBar(mSeekLin);
-        */
         recyclerView = (RecyclerView) view.findViewById(R.id.surveyRecyclerView);
         recyclerView.setAdapter(new SurveyAdapter(qfaList));
 
@@ -159,7 +153,7 @@ public class DynamicSurveyFragment extends Fragment {
         VerticalQuestion q20 = new VerticalQuestion("20. During the <b>past 4 weeks</b>, to what extent has your physical health or emotional " +
                 "problems interfered with your normal social activities with family, friends, neighbors, or " +
                 "groups?", "Not at all", "Slightly", "Moderately", "Quite a bit", "Extremely");
-        VerticalQuestion q21 = new VerticalQuestion("21. How much <b>bodily</b> pain have you had during the <b>past 4 weeks</b>?", "1 - None", "2 - Very mild", "3 - Mild", "4 - Moderate", "5 - Severe", "6 - Very severe");
+        VerticalQuestion q21 = new VerticalQuestion("21. How much <b>bodily</b> pain have you had during the <b>past 4 weeks</b>?", "None", "Very mild", "Mild", "Moderate", "Severe", "Very severe");
         VerticalQuestion q22 = new VerticalQuestion("22. During the <b>past 4 weeks</b>, how much did <b>pain</b> interfere with your normal work " +
                 "(including both work outside the home and housework)?", "Not at all", "A little bit", "Moderately", "Quite a bit", "Extremely");
 
