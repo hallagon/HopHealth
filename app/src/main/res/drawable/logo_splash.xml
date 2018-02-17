@@ -3,9 +3,12 @@
 
     <item android:drawable="@color/colorPrimary" />
 
-    <item android:bottom="100dp">
+    <item android:bottom="100dp"
+        android:top="100dp"
+        android:left="100dp"
+        android:right="100dp">
         <bitmap
-            android:src="@drawable/jhu_logo_800w"
+            android:src="@drawable/jhmc_white_transp"
             android:gravity="center" />
     </item>
 

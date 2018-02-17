@@ -27,16 +27,27 @@ public class SubmissionManager extends Application{
 
     public static SubmissionManager instance = new SubmissionManager();
 
-    private Map<Integer, Integer> submissionMap = new HashMap<>();
+    private Map<Integer, Double> submissionMap = new HashMap<>();
 
     private RecyclerView rv;
     private RecyclerView.SmoothScroller scroller;
     private LinearLayoutManager llm;
 
-    public void updateEntry(int questionIndex, int answerIndex){
+    public void updateEntryAndScroll(int questionIndex, double answerIndex){
         submissionMap.put(questionIndex, answerIndex);
         //rv.smoothScrollToPosition(getNextUpQuestion());
         scrollToPosition(getNextUpQuestion());
+    }
+
+    public void updateEntry(int questionIndex, double answerIndex){
+        submissionMap.put(questionIndex, answerIndex);
+    }
+
+
+    public void clearEntries(){
+        submissionMap.clear();
+        nextUp = 1;
+        rv.getAdapter().notifyDataSetChanged();
     }
 
     public int getMapSize(){
@@ -44,22 +55,8 @@ public class SubmissionManager extends Application{
     }
 
     public boolean isFormComplete(){
-        return (submissionMap.size() == QUESTION_COUNT);
+        return (getNextUpQuestion() > QUESTION_COUNT);
     }
-
-//    public void submitSurvey() {
-//        if(instance.isFormComplete()) {
-//            SharedPreferences sharedPref = MyApplication.getContext().getSharedPreferences("submissions", Context.MODE_PRIVATE);
-//            SharedPreferences.Editor editor = sharedPref.edit();
-//            //saves a key-value set consisting of current time and submission data
-//            editor.putString(System.currentTimeMillis() + "", SubmissionManager.instance.prettyMapToString());
-//            editor.commit();
-//
-//            sendEmail();
-//        } else {
-//            Toast.makeText(MyApplication.getContext(), "Current form submission state: " + instance.getMapSize() + " / " + instance.QUESTION_COUNT, Toast.LENGTH_SHORT).show();
-//        }
-//    }
 
     public String getMapToString(){
         return submissionMap.toString();
@@ -84,24 +81,24 @@ public class SubmissionManager extends Application{
         }
         */
         for (int i : keyArray) {
-            result = result + "Q." + (i) + " / A." + (submissionMap.get(i) + 1) + '\n';
+            result = result + "Q." + (i) + " / A." + (submissionMap.get(i) + (i == -1 ? 0 : 1)) + '\n';
         }
         return result;
     }
 
-    public Map<Integer, Integer> getSubmissionMap() {
+    public Map<Integer, Double> getSubmissionMap() {
         return submissionMap;
     }
 
     public int getSelectedRadioButton(int position){
-        if(submissionMap.containsKey(position)) return submissionMap.get(position);
+        if(submissionMap.containsKey(position)) return submissionMap.get(position).intValue();
         else return -1;
     }
 
     public int getNextUpQuestion(){
         //Log.d("entered nextup", prettyMapToString());
 
-        while(nextUp < 35 && submissionMap.containsKey(nextUp)){
+        while(nextUp <= QUESTION_COUNT && submissionMap.containsKey(nextUp)){
             nextUp++;
             Log.d("nextup", nextUp + "");
         }

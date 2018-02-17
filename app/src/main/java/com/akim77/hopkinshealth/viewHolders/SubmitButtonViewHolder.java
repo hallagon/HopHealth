@@ -1,5 +1,6 @@
 package com.akim77.hopkinshealth.viewHolders;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.akim77.hopkinshealth.R;
 import com.akim77.hopkinshealth.SubmissionManager;
+import com.akim77.hopkinshealth.WeightActivity;
 
 /**
  * Created by anthony on 12/29/17.
@@ -37,8 +39,15 @@ public class SubmitButtonViewHolder extends RecyclerView.ViewHolder {
                     //saves a key-value set consisting of current time and submission data
                     editor.putString(System.currentTimeMillis() + "", SubmissionManager.instance.prettyMapToString());
                     editor.apply();
-
                     sendEmail(context);
+
+                    SubmissionManager.instance.clearEntries();
+
+                    /*
+                    Intent i = new Intent(context, WeightActivity.class);
+                    context.startActivity(i);
+                    ((Activity)context).finish();
+                    */
                 } else {
                     Toast.makeText(context, "Please complete question " + SubmissionManager.instance.getNextUpQuestion() + ".", Toast.LENGTH_SHORT).show();
                 }

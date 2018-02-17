@@ -2,7 +2,6 @@ package com.akim77.hopkinshealth.viewHolders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -35,7 +34,7 @@ public class VerticalQuestionViewHolder extends RecyclerView.ViewHolder {
         rb1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SubmissionManager.instance.updateEntry((Integer) radioGroup.getTag(), 0);
+                SubmissionManager.instance.updateEntryAndScroll((Integer) radioGroup.getTag(), 0);
             }
         });
 //
@@ -49,35 +48,35 @@ public class VerticalQuestionViewHolder extends RecyclerView.ViewHolder {
         rb2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SubmissionManager.instance.updateEntry((Integer) radioGroup.getTag(), 1);
+                SubmissionManager.instance.updateEntryAndScroll((Integer) radioGroup.getTag(), 1);
             }
         });
 
         rb3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SubmissionManager.instance.updateEntry((Integer) radioGroup.getTag(), 2);
+                SubmissionManager.instance.updateEntryAndScroll((Integer) radioGroup.getTag(), 2);
             }
         });
 
         rb4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SubmissionManager.instance.updateEntry((Integer) radioGroup.getTag(), 3);
+                SubmissionManager.instance.updateEntryAndScroll((Integer) radioGroup.getTag(), 3);
             }
         });
 
         rb5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SubmissionManager.instance.updateEntry((Integer) radioGroup.getTag(), 4);
+                SubmissionManager.instance.updateEntryAndScroll((Integer) radioGroup.getTag(), 4);
             }
         });
 
         rb6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SubmissionManager.instance.updateEntry((Integer) radioGroup.getTag(), 5);
+                SubmissionManager.instance.updateEntryAndScroll((Integer) radioGroup.getTag(), 5);
             }
         });
 

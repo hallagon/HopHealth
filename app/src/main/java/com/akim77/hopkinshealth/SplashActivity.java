@@ -18,9 +18,9 @@ public class SplashActivity extends AppCompatActivity {
 
         Intent i;
         if(patientGroup.equals("control")){
-            i = new Intent(this, ControlActivity.class);
+            i = new Intent(this, WeightActivity.class);
         } else if(patientGroup.equals("intervention")){
-            i = new Intent(this, InterventionActivity.class);
+            i = new Intent(this, InterventionGroupActivity.class);
         } else {
             i = new Intent(this, InitialSetupActivity.class);
         }

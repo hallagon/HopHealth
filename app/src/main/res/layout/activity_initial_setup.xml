@@ -29,7 +29,7 @@
         android:layout_marginBottom="30dp">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/idEnterTextview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enter patient's ID number:"
@@ -38,61 +38,98 @@
 
         <EditText
             android:id="@+id/edittext_patient_id"
-            android:layout_width="300dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView"
-            android:layout_alignStart="@+id/textView"
-            android:layout_below="@+id/textView"
             android:layout_marginTop="17dp"
             android:hint="Patient ID"
             android:layout_gravity="right"
+            android:textAlignment="center"
             android:textSize="25sp"
             android:inputType="number"/>
 
     </LinearLayout>
 
-
-    <!--
     <LinearLayout
-        android:id="@+id/button_linear_layout"
+        android:id="@+id/patient_height_linear_layout"
         android:layout_below="@id/patient_number_linear_layout"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="30dp">
 
+        <TextView
+            android:id="@+id/heightEnterTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter patient's height:"
+            android:textSize="30sp"
+            />
 
-        <Button
-            android:id="@+id/button_intervention"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text="Intervention"
-            android:textAllCaps="false"
-            android:layout_weight="1"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
 
-        <Button
-            android:id="@+id/button_control"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text="Control"
-            android:textAllCaps="false"
-            android:layout_weight="1"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <EditText
+                android:id="@+id/edittext_patient_height_ft"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:inputType="number"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ft."
+                android:textSize="25sp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+            <EditText
+                android:id="@+id/edittext_patient_height_in"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:inputType="number"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="in."
+                android:textSize="25sp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
-    -->
+
 
     <TextView
         android:id="@+id/buttons_explanation_textview"
-        android:layout_below="@id/patient_number_linear_layout"
+        android:layout_below="@id/patient_height_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:text="Select the patient's group:"
         android:layout_marginLeft="30dp"/>
 
     <RadioGroup
-        android:id="@+id/radio_buttons_linear_layout"
+        android:id="@+id/group_radio_buttons_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttons_explanation_textview"
@@ -111,7 +148,7 @@
             android:text="Intervention"
             android:layout_weight="1"
             android:textAlignment="center"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:layout_marginRight="15dp"
             />
 
@@ -124,7 +161,7 @@
             android:text="Control"
             android:layout_weight="1"
             android:textAlignment="center"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:layout_marginLeft="15dp"/>
 
     </RadioGroup>
@@ -134,11 +171,11 @@
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:text="Finish Setup"
-        android:layout_below="@id/radio_buttons_linear_layout"
+        android:layout_below="@id/group_radio_buttons_linear_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:textAllCaps="false"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:backgroundTint="@color/colorPrimary"
         android:textColor="@android:color/white"
         />

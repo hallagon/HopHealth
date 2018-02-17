@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.akim77.hopkinshealth.fragments.DynamicSurveyFragment;
 import com.akim77.hopkinshealth.fragments.FeedbackFragment;
 
-public class InterventionActivity extends AppCompatActivity {
+public class InterventionGroupActivity extends AppCompatActivity {
 
     private int currentFragment = 0; //0 if uninitialized, 1 if survey, 2 if feedback, etc
 
@@ -32,7 +32,7 @@ public class InterventionActivity extends AppCompatActivity {
                         fragmentTransaction.commit();
                         currentFragment = 1;
                     }
-                    else Toast.makeText(InterventionActivity.this, "already in it!", Toast.LENGTH_SHORT).show();
+                    else Toast.makeText(InterventionGroupActivity.this, "already in it!", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.navigation_feedback:
                     if(currentFragment != 2) {
@@ -40,7 +40,7 @@ public class InterventionActivity extends AppCompatActivity {
                         fragmentTransaction.commit();
                         currentFragment = 2;
                     }
-                    else Toast.makeText(InterventionActivity.this, "already in it!", Toast.LENGTH_SHORT).show();
+                    else Toast.makeText(InterventionGroupActivity.this, "already in it!", Toast.LENGTH_SHORT).show();
                     return true;
             }
             return false;
