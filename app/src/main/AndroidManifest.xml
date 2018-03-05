@@ -5,14 +5,14 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/adaptive_measurement_logo_round"
+        android:icon="@mipmap/jhmc_real_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/adaptive_measurement_logo_round"
+        android:roundIcon="@mipmap/jhmc_real_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".InitialSetupActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".examples.UserListsActivity"
             android:screenOrientation="portrait" />
@@ -28,7 +28,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WeightActivity"></activity>
+        <activity android:name=".WeightActivity" />
+
+        <receiver android:name=".AlertReceiver">
+
+        </receiver>
+
+        <receiver android:name=".RebootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".NotifyService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
 </manifest>
