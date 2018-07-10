@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.akim77.hopkinshealth.OAuthHandler;
 import com.akim77.hopkinshealth.R;
 
 import java.util.Date;
@@ -28,6 +29,7 @@ import java.util.Map;
  */
 public class FeedbackFragment extends Fragment {
 
+    private SharedPreferences patientSharedPref;
     private ListView mListView;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,6 +65,29 @@ public class FeedbackFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        String patientID = patientSharedPref.getString("patientId", "-99");
+        final String dataUrl = "http://jhprohealth.herokuapp.com/polls/checkin/" + patientID + "/1/";
+        Log.d("Sending data as1", dataUrl);
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try  {
+                    Log.d("Sending data as2", dataUrl);
+                    OAuthHandler.instance.makePlainHttpCall(dataUrl);
+                    //Your code goes here
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+        super.onResume();
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -76,6 +101,8 @@ public class FeedbackFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_feedback, container, false);
+        patientSharedPref = view.getContext().getSharedPreferences("patientInfo", Context.MODE_PRIVATE);
+
 
         mListView = (ListView) view.findViewById(R.id.listview);
 

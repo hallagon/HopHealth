@@ -16,7 +16,7 @@ public class AlertReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d("******", "onReceive");
-        createNotification(context, "Hopkins ProHealth ", "Time to take your survey!", "Alert");
+        createNotification(context, "Hopkins ProHealth ", intent.getStringExtra("msg"), "Alert");
     }
 
     private void createNotification(Context context, String msgTitle, String msgText, String msgAlert) {

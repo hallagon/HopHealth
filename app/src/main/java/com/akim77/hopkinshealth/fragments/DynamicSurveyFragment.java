@@ -1,6 +1,8 @@
 package com.akim77.hopkinshealth.fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -21,6 +23,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.akim77.hopkinshealth.CustomSnapHelper;
+import com.akim77.hopkinshealth.OAuthHandler;
 import com.akim77.hopkinshealth.R;
 import com.akim77.hopkinshealth.SubmissionManager;
 import com.akim77.hopkinshealth.SurveyAdapter;
@@ -37,6 +40,7 @@ public class DynamicSurveyFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private RecyclerView recyclerView;
+    private SharedPreferences patientSharedPref;
 
     private List<Object> qfaList = new ArrayList<>();
 
@@ -45,6 +49,28 @@ public class DynamicSurveyFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onResume() {
+        String patientID = patientSharedPref.getString("patientId", "-99");
+        final String dataUrl = "http://jhprohealth.herokuapp.com/polls/checkin/" + patientID + "/0/";
+        Log.d("Sending data as1", dataUrl);
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try  {
+                    Log.d("Sending data as2", dataUrl);
+                    OAuthHandler.instance.makePlainHttpCall(dataUrl);
+                    //Your code goes here
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+        super.onResume();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,6 +105,29 @@ public class DynamicSurveyFragment extends Fragment {
 
 
         SubmissionManager.instance.scrollToPosition(SubmissionManager.instance.getNextUpQuestion() == 1 ? 0 : SubmissionManager.instance.getNextUpQuestion());
+
+
+        patientSharedPref = view.getContext().getSharedPreferences("patientInfo", Context.MODE_PRIVATE);
+//        String patientID = patientSharedPref.getString("patientId", "-99");
+//        final String dataUrl = "http://jhprohealth.herokuapp.com/polls/checkin/" + patientID + "/";
+//        Log.d("Sending data as1", dataUrl);
+//
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try  {
+//                    Log.d("Sending data as2", dataUrl);
+//                    OAuthHandler.instance.makePlainHttpCall(dataUrl);
+//                    //Your code goes here
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//
+//        thread.start();
+
+
 
 
 //        CustomSnapHelper customSnapHelper = new CustomSnapHelper();

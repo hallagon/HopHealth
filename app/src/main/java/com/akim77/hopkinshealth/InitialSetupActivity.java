@@ -114,17 +114,72 @@ public class InitialSetupActivity extends AppCompatActivity {
     }
 
     public void setAlarm(){
-        int interval = 10000;
+        int intervalInDays = 1;
+
+        int millisecondsInSecond = 1000;
+        int secondsInMinute = 60;
+        int minutesInHour = 60;
+        int hoursInDay = 24;
+
+        long interval = intervalInDays * (millisecondsInSecond * secondsInMinute * minutesInHour * hoursInDay);
 
         Log.d("entered", "setalarm*******");
         int count = 0;
-        Long alertTime1 = new GregorianCalendar().getTimeInMillis() + interval * count++;
-        Long alertTime2 = new GregorianCalendar().getTimeInMillis() + interval * count++;
-        Long alertTime3 = new GregorianCalendar().getTimeInMillis() + interval * count++;
-        Long alertTime4 = new GregorianCalendar().getTimeInMillis() + interval * count++;
-        Long alertTime5 = new GregorianCalendar().getTimeInMillis() + interval * count++;
+        long curTimeMillis = new GregorianCalendar().getTimeInMillis();
+        //1 month post
+        Long alertTime1 = curTimeMillis + interval * 28;
+        Long alertTime2 = curTimeMillis + interval * 29;
+        Long alertTime3 = curTimeMillis + interval * 30;
+        Long alertTime4 = curTimeMillis + interval * 31;
+        Long alertTime5 = curTimeMillis + interval * 32;
+        //2 months post
+        Long alertTime6 = curTimeMillis + interval * 58;
+        Long alertTime7 = curTimeMillis + interval * 59;
+        Long alertTime8 = curTimeMillis + interval * 60;
+        Long alertTime9 = curTimeMillis + interval * 61;
+        Long alertTime10 = curTimeMillis + interval * 62;
 
-        Intent intent = new Intent(this, AlertReceiver.class);
+        //3 months post
+        Long alertTime11 = curTimeMillis + interval * 88;
+        Long alertTime12 = curTimeMillis + interval * 89;
+        Long alertTime13 = curTimeMillis + interval * 90;
+        Long alertTime14 = curTimeMillis + interval * 91;
+        Long alertTime15 = curTimeMillis + interval * 92;
+
+        Intent intent1 = new Intent(this, AlertReceiver.class);
+        intent1.putExtra("msg", "You have an upcoming survey in 3 days.");
+        Intent intent2 = new Intent(this, AlertReceiver.class);
+        intent2.putExtra("msg", "You have an upcoming survey tomorrow.");
+        Intent intent3 = new Intent(this, AlertReceiver.class);
+        intent3.putExtra("msg", "You have a survey to take today.");
+        Intent intent4 = new Intent(this, AlertReceiver.class);
+        intent4.putExtra("msg", "You have a missed survey due yesterday.");
+        Intent intent5 = new Intent(this, AlertReceiver.class);
+        intent5.putExtra("msg", "You have a missed survey 3 days ago.");
+
+
+        Intent intent6 = new Intent(this, AlertReceiver.class);
+        intent1.putExtra("msg", "You have an upcoming survey in 3 days.");
+        Intent intent7 = new Intent(this, AlertReceiver.class);
+        intent2.putExtra("msg", "You have an upcoming survey tomorrow.");
+        Intent intent8 = new Intent(this, AlertReceiver.class);
+        intent3.putExtra("msg", "You have a survey to take today.");
+        Intent intent9 = new Intent(this, AlertReceiver.class);
+        intent4.putExtra("msg", "You have a missed survey due yesterday.");
+        Intent intent10 = new Intent(this, AlertReceiver.class);
+        intent5.putExtra("msg", "You have a missed survey 3 days ago.");
+
+        Intent intent11 = new Intent(this, AlertReceiver.class);
+        intent1.putExtra("msg", "You have an upcoming survey in 3 days.");
+        Intent intent12 = new Intent(this, AlertReceiver.class);
+        intent2.putExtra("msg", "You have an upcoming survey tomorrow.");
+        Intent intent13 = new Intent(this, AlertReceiver.class);
+        intent3.putExtra("msg", "You have a survey to take today.");
+        Intent intent14 = new Intent(this, AlertReceiver.class);
+        intent4.putExtra("msg", "You have a missed survey due yesterday.");
+        Intent intent15 = new Intent(this, AlertReceiver.class);
+        intent5.putExtra("msg", "You have a missed survey 3 days ago.");
+
 
         AlarmManager alarmManager1 = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 //        AlarmManager alarmManager2 = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
@@ -138,15 +193,37 @@ public class InitialSetupActivity extends AppCompatActivity {
 //                PendingIntent.getBroadcast(this, (int)System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT));
 
         alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime1,
-                PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getBroadcast(this, 1, intent1, PendingIntent.FLAG_UPDATE_CURRENT));
         alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime2,
-                PendingIntent.getBroadcast(this, 2, intent, PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getBroadcast(this, 2, intent2, PendingIntent.FLAG_UPDATE_CURRENT));
         alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime3,
-                PendingIntent.getBroadcast(this, 3, intent, PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getBroadcast(this, 3, intent3, PendingIntent.FLAG_UPDATE_CURRENT));
         alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime4,
-                PendingIntent.getBroadcast(this, 4, intent, PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getBroadcast(this, 4, intent4, PendingIntent.FLAG_UPDATE_CURRENT));
         alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime5,
-                PendingIntent.getBroadcast(this, 5, intent, PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getBroadcast(this, 5, intent5, PendingIntent.FLAG_UPDATE_CURRENT));
+
+        alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime6,
+                PendingIntent.getBroadcast(this, 6, intent6, PendingIntent.FLAG_UPDATE_CURRENT));
+        alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime7,
+                PendingIntent.getBroadcast(this, 7, intent7, PendingIntent.FLAG_UPDATE_CURRENT));
+        alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime8,
+                PendingIntent.getBroadcast(this, 8, intent8, PendingIntent.FLAG_UPDATE_CURRENT));
+        alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime9,
+                PendingIntent.getBroadcast(this, 9, intent9, PendingIntent.FLAG_UPDATE_CURRENT));
+        alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime10,
+                PendingIntent.getBroadcast(this, 10, intent10, PendingIntent.FLAG_UPDATE_CURRENT));
+
+        alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime11,
+                PendingIntent.getBroadcast(this, 11, intent11, PendingIntent.FLAG_UPDATE_CURRENT));
+        alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime12,
+                PendingIntent.getBroadcast(this, 12, intent12, PendingIntent.FLAG_UPDATE_CURRENT));
+        alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime13,
+                PendingIntent.getBroadcast(this, 13, intent13, PendingIntent.FLAG_UPDATE_CURRENT));
+        alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime14,
+                PendingIntent.getBroadcast(this, 14, intent14, PendingIntent.FLAG_UPDATE_CURRENT));
+        alarmManager1.set(AlarmManager.RTC_WAKEUP, alertTime15,
+                PendingIntent.getBroadcast(this, 15, intent15, PendingIntent.FLAG_UPDATE_CURRENT));
 
 //        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alertTime, 3000, PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT));
     }

@@ -86,6 +86,26 @@ public class SubmissionManager extends Application{
         return result;
     }
 
+    public String getSubmissionAnswerSequence(){
+        String result = "";
+        Set<Integer> keySet = submissionMap.keySet();
+
+        int[] keyArray = new int[keySet.size()];
+        int count = 0;
+        for(int i : keySet){
+            keyArray[count++] = i;
+        }
+
+        Arrays.sort(keyArray);
+
+
+        for (int i : keyArray) {
+            Double d = (submissionMap.get(i) + (i == -1 ? 0 : 1));
+            result += d.intValue();
+        }
+        return result;
+    }
+
     public Map<Integer, Double> getSubmissionMap() {
         return submissionMap;
     }

@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.amazonaws.mobile.client.AWSMobileClient;
+
 import java.util.Calendar;
 
 public class SplashActivity extends AppCompatActivity {
@@ -16,6 +18,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AWSMobileClient.getInstance().initialize(this).execute();
 //        setContentView(R.layout.activity_splash);
 
         SharedPreferences sharedPreferences = getSharedPreferences("patientInfo", Context.MODE_PRIVATE);

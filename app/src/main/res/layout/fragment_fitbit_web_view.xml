@@ -1,0 +1,13 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.akim77.hopkinshealth.fragments.FitbitWebViewFragment">
+
+
+    <Button
+        android:id="@+id/launchChromeButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="WELCOME. Login with Fitbit"/>
+</FrameLayout>
