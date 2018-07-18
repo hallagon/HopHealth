@@ -1,7 +1,9 @@
 package com.akim77.hopkinshealth.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,13 +12,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.akim77.hopkinshealth.CombinedStepsChartActivity;
 import com.akim77.hopkinshealth.OAuthHandler;
 import com.akim77.hopkinshealth.R;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,7 +42,8 @@ import java.util.Map;
 public class FeedbackFragment extends Fragment {
 
     private SharedPreferences patientSharedPref;
-    private ListView mListView;
+    private Button stepsButton;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -102,30 +115,46 @@ public class FeedbackFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_feedback, container, false);
         patientSharedPref = view.getContext().getSharedPreferences("patientInfo", Context.MODE_PRIVATE);
+        stepsButton = (Button) view.findViewById(R.id.stepsButton);
+        stepsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), CombinedStepsChartActivity.class);
+                startActivity(i);
+            }
+        });
 
 
-        mListView = (ListView) view.findViewById(R.id.listview);
+/*
+        chart = (BarChart) view.findViewById(R.id.chart);
+        List<BarEntry> entries = new ArrayList<BarEntry>();
 
-        SharedPreferences sharedPref = getActivity().getSharedPreferences("submissions", Context.MODE_PRIVATE);
-        Map<String, ?> allEntries = sharedPref.getAll();
-        int mapSize = allEntries.size();
-
-        String[] surveyArray = new String[mapSize];
-        int count = 0;
-        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            long millis = Long.parseLong(entry.getKey());
-            Date date = new Date(millis);
-
-            surveyArray[count++] = "Submitted time: " + date.toString() + '\n' + entry.getValue().toString();
-            //Log.d("map values", entry.getKey() + ": " + entry.getValue().toString());
+        for (int i = 0; i < 10; i++) {
+            // turn your data into Entry objects
+            entries.add(new BarEntry(i, i * i));
         }
 
-// 4
-        ArrayAdapter adapter = new ArrayAdapter(view.getContext(), android.R.layout.simple_list_item_1, surveyArray);
+        BarDataSet dataSet = new BarDataSet(entries, "Label"); // add entries to dataset
+        dataSet.setColor(Color.DKGRAY);
+        dataSet.setValueTextColor(Color.BLACK);
 
-        mListView.setAdapter(adapter);
+        BarData lineData = new BarData(dataSet);
+        chart.setData(lineData);
+
+        LimitLine ll = new LimitLine(40f, "Systolic Systolic Systolic Systolic Systolic ");
+        ll.setLineColor(Color.GREEN);
+        ll.setLineWidth(20f);
+
+        ll.setTextColor(Color.CYAN);
+        ll.setTextSize(12f);
+        chart.getAxisLeft().addLimitLine(ll);
+        chart.getAxisLeft().setDrawLimitLinesBehindData(true);
 
 
+//        chart.setScaleEnabled(false);
+//        chart.setDrawGridBackground(false);
+        chart.invalidate(); // refresh
+*/
 
         return view;
     }
@@ -143,7 +172,7 @@ public class FeedbackFragment extends Fragment {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-            Toast.makeText(context, "Feedback", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "Feedback", Toast.LENGTH_SHORT).show();
         }
     }
 

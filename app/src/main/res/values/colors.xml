@@ -5,10 +5,14 @@
     <color name="colorAccent">#ff4081</color>
     <color name="colorPrimaryLight">#477fff</color>
     <color name="colorPrimarySuperLight">#89f9ff</color>
+    <color name="colorPrimarySuperLightToned">#83a9ff</color>
     <color name="colorDarkenedWhite">#c9d6d9</color>
 
     <color name="colorButtonSelectedDark">#9b9b9b</color>
     <color name="colorButtonSelectedLight">#c4c4c4</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="over_red">#ffc2c2</color>
+    <color name="over_green">#baffbf</color>
+    <color name="over_green_dark">#4f8353</color>
 </resources>

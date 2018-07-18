@@ -149,7 +149,7 @@ public class DynamicSurveyFragment extends Fragment {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-            Toast.makeText(context, "Survey", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "Survey", Toast.LENGTH_SHORT).show();
         }
 
     }

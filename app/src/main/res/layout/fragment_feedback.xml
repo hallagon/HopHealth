@@ -13,16 +13,61 @@
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/bottom_navigation2">
+            android:layout_above="@+id/bottom_navigation2"
 
-            <ListView
-                android:id="@+id/listview"
+            >
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
 
+                >
 
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:paddingTop="20dp"
+                    android:text="My Feedback"
+                    android:textColor="@android:color/black"
+                    android:textAlignment="center"
+                    android:textSize="60dp"
+                    />
 
-            </ListView>
+                <Button
+                    android:layout_weight="1"
+                    android:id="@+id/stepsButton"
+                    android:background="@drawable/ripple_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="40dp"
+                    android:textSize="40dp"
+                    android:textColor="@android:color/white"
+                    android:text="Daily Steps"/>
+                <Button
+                    android:layout_weight="1"
+                    android:id="@+id/activityButton"
+                    android:background="@drawable/ripple_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="40dp"
+                    android:textSize="40dp"
+                    android:textColor="@android:color/white"
+                    android:text="Weekly active hours"/>
+                <Button
+                    android:layout_weight="1"
+                    android:id="@+id/weightButton"
+                    android:background="@drawable/ripple_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:textSize="40dp"
+                    android:textColor="@android:color/white"
+                    android:text="Average weight"/>
+            </LinearLayout>
 
         </FrameLayout>
 

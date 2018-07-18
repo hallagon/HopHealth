@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HopHealth.iml" filepath="$PROJECT_DIR$/HopHealth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MPAndroidChart/MPAndroidChart.iml" filepath="$PROJECT_DIR$/MPAndroidChart/MPAndroidChart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MPAndroidChart/MPAndroidChart-master/MPAndroidChart-master.iml" filepath="$PROJECT_DIR$/MPAndroidChart/MPAndroidChart-master/MPAndroidChart-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MPAndroidChart/MPAndroidChart-master/MPChartLib/MPChartLib.iml" filepath="$PROJECT_DIR$/MPAndroidChart/MPAndroidChart-master/MPChartLib/MPChartLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

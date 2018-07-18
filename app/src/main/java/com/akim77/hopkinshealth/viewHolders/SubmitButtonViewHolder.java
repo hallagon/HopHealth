@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,6 +32,8 @@ public class SubmitButtonViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
 
         submitButton = (Button) itemView.findViewById(R.id.surveySubmitButton);
+        Drawable d = itemView.getContext().getResources().getDrawable(R.drawable.ripple_button);
+        submitButton.setBackground(d);
 
 
 

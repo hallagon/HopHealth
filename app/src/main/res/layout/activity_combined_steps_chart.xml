@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="Average number of steps per day"
+            android:textAlignment="center"
+            android:textSize="35dp"
+            android:textColor="@android:color/black"/>
+
+        <com.github.mikephil.charting.charts.CombinedChart
+            android:id="@+id/chart1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="350dp"/>
+        <TextView
+            android:textAlignment="center"
+            android:textSize="24dp"
+            android:textColor="@android:color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shadow_button"
+            android:text="The target range of steps is based on the estimated number of steps associated with the recommended amount of physical activity in public health guidelines (achieving 30 minutes of activity on most days) in addition to your daily activity. \nBE SURE TO TALK TO YOUR DOCTOR ABOUT WHAT EXERCISE IS RIGHT FOR YOU"
+            />
+        <Button
+            android:id="@+id/steps_return_button"
+            android:height="400dp"
+            android:background="@drawable/ripple_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back to My Feedback"
+            android:textSize="40dp"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            />
+
+</LinearLayout>
