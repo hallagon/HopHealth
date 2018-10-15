@@ -15,4 +15,20 @@
     <color name="over_red">#ffc2c2</color>
     <color name="over_green">#baffbf</color>
     <color name="over_green_dark">#4f8353</color>
+
+    <color name="chart_red">#ffb2a7</color>
+    <color name="chart_yellow">#fffaa0</color>
+    <color name="chart_green">#d5ffb9</color>
+    <color name="chart_blue">#b6c2df</color>
+
+    <color name="chart_dark_blue">#67799e</color>
+    <color name="chart_dark_green">#68963d</color>
+    <color name="chart_dark_yellow">#c99600</color>
+    <color name="chart_dark_red">#97000a</color>
+
+    <color name="text_papyrus">#fff9e1</color>
+
+
+
+
 </resources>

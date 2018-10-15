@@ -1,12 +1,13 @@
 package com.akim77.hopkinshealth;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Debug;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.akim77.hopkinshealth.fragments.FeedbackFragment;
 import com.github.mikephil.charting.charts.CombinedChart;
@@ -29,18 +30,22 @@ import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
-public class CombinedStepsChartActivity extends AppCompatActivity {
+import static java.util.Collections.max;
+
+public class CombinedActiveHoursChartActivity extends AppCompatActivity {
     final float DOTSIZE = 20f;
-    private ArrayList<Float> stepsArray = new ArrayList<Float>();
+    private ArrayList<Float> hoursArray = new ArrayList<Float>();
     private Button returnButton;
     private ArrayList<FeedbackFragment.WeeklyFeedbackData> feedbackList;
     private int lastWeekNumber = 0;
+    private TextView lastWeekTextView;
+
 
     private void generateStepsData(){
         float[] steps = new float[12];
@@ -48,48 +53,62 @@ public class CombinedStepsChartActivity extends AppCompatActivity {
             steps[i] = -1f;
         }
         for (float i : steps){
-            stepsArray.add(i);
+            hoursArray.add(i);
         }
     }
 
-    private void organizeStepsData(){
+    private void organizeHoursData(){
         feedbackList = (ArrayList<FeedbackFragment.WeeklyFeedbackData>) getIntent().getSerializableExtra("feedbackList");
         Collections.sort(feedbackList, new Comparator<FeedbackFragment.WeeklyFeedbackData>(){
             public int compare(FeedbackFragment.WeeklyFeedbackData o1, FeedbackFragment.WeeklyFeedbackData o2){
                 return o1.week - o2.week;
             }
         });
-        Log.d("debuggingsteps", feedbackList.toString());
+        Log.d("debuggingactivehours", feedbackList.toString());
         for(FeedbackFragment.WeeklyFeedbackData data : feedbackList){
 //            weightsArray.add(data.avg_weight);
 
-            stepsArray.set(data.week - 1, data.avg_steps);
+            hoursArray.set(data.week - 1, data.total_active_min / 60f);
         }
         lastWeekNumber = feedbackList.size();
+        float lastHours;
+        if(lastWeekNumber > 0) lastHours = hoursArray.get(lastWeekNumber - 1);
+        else lastHours = 0;
+        Log.d("lasthours1", lastHours + "");
+
+        lastHours = (int) (lastHours * 100) / 100f;
+        Log.d("lasthours2", lastHours + "");
+        lastWeekTextView.setText("Last Week: " + lastHours + " hours of activity");
 
     }
+
+    private void getSteps(){
+
+    }
+
 
     private CombinedChart mChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_combined_steps_chart);
-        returnButton = findViewById(R.id.steps_return_button);
+        setContentView(R.layout.activity_combined_active_hours_chart);
+        returnButton = findViewById(R.id.active_hours_return_button);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
         });
+        lastWeekTextView = findViewById(R.id.active_hours_textview);
         generateStepsData();
-        organizeStepsData();
+        organizeHoursData();
         setupChart();
 
     }
 
     protected void setupChart(){
-        mChart = findViewById(R.id.chart1);
+        mChart = findViewById(R.id.active_chart);
         mChart.getDescription().setEnabled(false);
 //        mChart.setBackgroundColor(getResources().getColor(R.color.over_red));
         mChart.setDrawGridBackground(true);
@@ -122,17 +141,16 @@ public class CombinedStepsChartActivity extends AppCompatActivity {
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setDrawGridLines(false);
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-        float maxSteps = Collections.max(stepsArray);
-        leftAxis.setAxisMaximum(maxSteps > 10000 ? maxSteps : 10000);
+        float maxHours = Collections.max(hoursArray);
+        leftAxis.setAxisMaximum(maxHours > 5 ? maxHours : 5);
         leftAxis.setSpaceBottom(0f);
-        leftAxis.setGranularity(2500f);
+        leftAxis.setGranularity(1f);
 //        leftAxis.setLabelCount(7, false);
         leftAxis.setDrawAxisLine(false);
         leftAxis.setTextSize(15f);
 
-        LimitLine ll1 = new LimitLine(4600f, "Target");
+        LimitLine ll1 = new LimitLine(3f, "Target");
         ll1.setLineWidth(0f);
-        ll1.setLineColor(getResources().getColor(R.color.chart_dark_red));
 //        ll1.enableDashedLine(10f, 10f, 0f);
         ll1.setLabelPosition(LimitLine.LimitLabelPosition.CENTER_TOP);
         ll1.setTextSize(100f);
@@ -148,11 +166,10 @@ public class CombinedStepsChartActivity extends AppCompatActivity {
         xAxis.setAxisMaximum(13f);
         xAxis.setGranularity(1f);
         xAxis.setLabelCount(13);
-        xAxis.setTextSize(18f);
         xAxis.setLabelRotationAngle(-45);
+        xAxis.setTextSize(18f);
         xAxis.setCenterAxisLabels(false);
         xAxis.setCustomAxisOffsetEnabled(true);
-//        xAxis.setPosition(XAxisPosition.BOTTOM);
 //        xAxis.setAvoidFirstLastClipping(true);
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
@@ -214,11 +231,11 @@ public class CombinedStepsChartActivity extends AppCompatActivity {
         ArrayList<Entry> entries = new ArrayList<Entry>();
         ArrayList<Entry> redEntries = new ArrayList<Entry>();
 
-        for (int i = 0; i < stepsArray.size(); i++) {
-            if(stepsArray.get(i) > 0) {
-                entries.add(new Entry(i + 1, stepsArray.get(i)));
+        for (int i = 0; i < hoursArray.size(); i++) {
+            if(hoursArray.get(i) > 0) {
+                entries.add(new Entry(i + 1, hoursArray.get(i)));
             } else {
-                redEntries.add(new Entry(i + 1, stepsArray.get(i)));
+                redEntries.add(new Entry(i + 1, hoursArray.get(i)));
             }
         }
         if(entries.size() < 1) return null;
@@ -244,6 +261,7 @@ public class CombinedStepsChartActivity extends AppCompatActivity {
             d.addDataSet(redSet);
         }
 
+
         return d;
     }
 
@@ -259,7 +277,7 @@ public class CombinedStepsChartActivity extends AppCompatActivity {
             // stacked
             entries2.add(new BarEntry(0, new float[]{13, 13}));
         }*/
-        entries2.add(new BarEntry(0, 4600));
+        entries2.add(new BarEntry(0, 3f));
 
 
 //        BarDataSet set1 = new BarDataSet(entries1, "Bar 1");
@@ -279,7 +297,7 @@ public class CombinedStepsChartActivity extends AppCompatActivity {
 
         set2.setAxisDependency(YAxis.AxisDependency.LEFT);
 
-        float barWidth = (stepsArray.size() + 1) * 2f; // x2 dataset
+        float barWidth = (hoursArray.size() + 1) * 2f; // x2 dataset
         // (0.45 + 0.02) * 2 + 0.06 = 1.00 -> interval per "group"
 
         BarData d = new BarData(set2);

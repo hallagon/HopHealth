@@ -4,24 +4,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
-        android:text="Average number of steps per day"
+        android:text="Hours of activity per week"
         android:textAlignment="center"
-        android:textSize="38dp"
+        android:textSize="40dp"
         android:textColor="@android:color/black"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,11 +32,13 @@
         android:layout_marginLeft="10dp">
 
         <com.github.mikephil.charting.charts.CombinedChart
-            android:id="@+id/chart1"
+            android:id="@+id/active_chart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="350dp"
+
             />
+
     </LinearLayout>
 
     <View
@@ -43,19 +46,39 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:orientation="vertical"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:padding="10dp"
 
-        android:text="The target range of steps is based on the estimated number of steps associated with the recommended amount of physical activity in public health guidelines (achieving 30 minutes of activity on most days) in addition to your daily activity. \n\nBE SURE TO TALK TO YOUR DOCTOR ABOUT WHAT EXERCISE IS RIGHT FOR YOU"
-        android:textAlignment="center"
-        android:textSize="21dp"
-        android:textColor="@android:color/black"
-        />
+        >
+
+        <TextView
+            android:id="@+id/active_hours_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:paddingTop="15dp"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:text="Last Week: 0 hours of activity"
+
+            />
+
+        <TextView
+            android:textAlignment="center"
+            android:textSize="21dp"
+            android:textColor="@android:color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="The Prostate Cancer Foundation recommends that men should exercise as much as they are able. Exercising at a vigorous intensity for 3 or more hours per week may be needed to achieve the full benefit of exercise. However, brisk walking for 30 minutes on most days yields substantial benefits.\n\nBE SURE TO TALK TO YOUR DOCTOR ABOUT WHAT EXERCISE IS RIGHT FOR YOU"
+            />
+
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -63,7 +86,7 @@
         android:layout_weight="1"/>
 
     <Button
-        android:id="@+id/steps_return_button"
+        android:id="@+id/active_hours_return_button"
         android:background="@drawable/ripple_button"
         android:layout_width="match_parent"
         android:layout_height="110dp"

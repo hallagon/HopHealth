@@ -29,11 +29,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:paddingTop="20dp"
-                    android:text="My Feedback"
+                    android:text="My Progress"
                     android:textColor="@android:color/black"
                     android:textAlignment="center"
                     android:textSize="60dp"
                     />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:id="@+id/feedbacktest"
+                    android:text=""/>
 
                 <Button
                     android:layout_weight="1"
@@ -45,7 +52,8 @@
                     android:layout_marginBottom="40dp"
                     android:textSize="40dp"
                     android:textColor="@android:color/white"
-                    android:text="Daily Steps"/>
+                    android:text="Daily Steps"
+                    android:textAllCaps="false"/>
                 <Button
                     android:layout_weight="1"
                     android:id="@+id/activityButton"
@@ -56,7 +64,8 @@
                     android:layout_marginBottom="40dp"
                     android:textSize="40dp"
                     android:textColor="@android:color/white"
-                    android:text="Weekly active hours"/>
+                    android:text="Weekly active hours"
+                    android:textAllCaps="false"/>
                 <Button
                     android:layout_weight="1"
                     android:id="@+id/weightButton"
@@ -66,7 +75,8 @@
                     android:layout_gravity="center"
                     android:textSize="40dp"
                     android:textColor="@android:color/white"
-                    android:text="Average weight"/>
+                    android:text="Average weight"
+                    android:textAllCaps="false"/>
             </LinearLayout>
 
         </FrameLayout>

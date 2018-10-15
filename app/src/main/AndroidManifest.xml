@@ -69,6 +69,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".CombinedStepsChartActivity"></activity>
+        <activity android:name=".CombinedActiveHoursChartActivity"></activity>
+        <activity android:name=".CombinedWeightChartActivity"></activity>
     </application>
 
 </manifest>
