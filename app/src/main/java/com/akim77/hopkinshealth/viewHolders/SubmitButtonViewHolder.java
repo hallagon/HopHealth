@@ -71,6 +71,7 @@ public class SubmitButtonViewHolder extends RecyclerView.ViewHolder {
                     thread.start();
 
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
+                    Log.d("surveysubmitbutton", "pressed!!!");
                     builder1.setMessage("Survey has been sent. Thank you.");
                     builder1.setCancelable(true);
 

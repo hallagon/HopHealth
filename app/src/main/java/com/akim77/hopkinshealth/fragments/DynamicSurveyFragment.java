@@ -34,6 +34,7 @@ import com.akim77.hopkinshealth.questionModels.VerticalQuestion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class DynamicSurveyFragment extends Fragment {
@@ -108,6 +109,11 @@ public class DynamicSurveyFragment extends Fragment {
 
 
         patientSharedPref = view.getContext().getSharedPreferences("patientInfo", Context.MODE_PRIVATE);
+        SharedPreferences submissionPrefs = view.getContext().getSharedPreferences("submissions", Context.MODE_PRIVATE);
+        Map<String, ?> submissionMap = submissionPrefs.getAll();
+
+        Log.d("...getting...", "...submissions...");
+        Log.d("***submissions: ", submissionMap.toString());
 //        String patientID = patientSharedPref.getString("patientId", "-99");
 //        final String dataUrl = "http://jhprohealth.herokuapp.com/polls/checkin/" + patientID + "/";
 //        Log.d("Sending data as1", dataUrl);

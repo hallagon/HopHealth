@@ -1,35 +1,39 @@
 package com.akim77.hopkinshealth.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.akim77.hopkinshealth.CombinedActiveHoursChartActivity;
 import com.akim77.hopkinshealth.CombinedStepsChartActivity;
+import com.akim77.hopkinshealth.CombinedWeightChartActivity;
+import com.akim77.hopkinshealth.InterventionGroupActivity;
 import com.akim77.hopkinshealth.OAuthHandler;
 import com.akim77.hopkinshealth.R;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.LimitLine;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Serializable;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,7 +46,13 @@ import java.util.Map;
 public class FeedbackFragment extends Fragment {
 
     private SharedPreferences patientSharedPref;
-    private Button stepsButton;
+    private String patientID;
+    private Button stepsButton, activityButton, weightButton;
+
+    TextView txtJson;
+    ProgressDialog pd;
+    ArrayList<WeeklyFeedbackData> feedbackList = new ArrayList<>();
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,6 +68,7 @@ public class FeedbackFragment extends Fragment {
     public FeedbackFragment() {
         // Required empty public constructor
     }
+
 
     /**
      * Use this factory method to create a new instance of
@@ -79,7 +90,7 @@ public class FeedbackFragment extends Fragment {
 
     @Override
     public void onResume() {
-        String patientID = patientSharedPref.getString("patientId", "-99");
+        patientID = patientSharedPref.getString("patientId", "-99");
         final String dataUrl = "http://jhprohealth.herokuapp.com/polls/checkin/" + patientID + "/1/";
         Log.d("Sending data as1", dataUrl);
 
@@ -97,6 +108,12 @@ public class FeedbackFragment extends Fragment {
         });
 
         thread.start();
+
+        final String feedbackDataURL = "http://jhprohealth.herokuapp.com/polls/get_feedback/" + patientID + "/";
+        new JsonTask().execute("");
+
+
+
         super.onResume();
     }
 
@@ -115,49 +132,159 @@ public class FeedbackFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_feedback, container, false);
         patientSharedPref = view.getContext().getSharedPreferences("patientInfo", Context.MODE_PRIVATE);
+
+        txtJson = (TextView) view.findViewById(R.id.feedbacktest);
+
         stepsButton = (Button) view.findViewById(R.id.stepsButton);
         stepsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), CombinedStepsChartActivity.class);
+                setFeedbackExtra(i);
+                startActivity(i);
+            }
+        });
+        activityButton = (Button) view.findViewById(R.id.activityButton);
+        activityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), CombinedActiveHoursChartActivity.class);
+                setFeedbackExtra(i);
+                startActivity(i);
+            }
+        });
+        weightButton = (Button) view.findViewById(R.id.weightButton);
+        weightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), CombinedWeightChartActivity.class);
+                setFeedbackExtra(i);
                 startActivity(i);
             }
         });
 
-
-/*
-        chart = (BarChart) view.findViewById(R.id.chart);
-        List<BarEntry> entries = new ArrayList<BarEntry>();
-
-        for (int i = 0; i < 10; i++) {
-            // turn your data into Entry objects
-            entries.add(new BarEntry(i, i * i));
-        }
-
-        BarDataSet dataSet = new BarDataSet(entries, "Label"); // add entries to dataset
-        dataSet.setColor(Color.DKGRAY);
-        dataSet.setValueTextColor(Color.BLACK);
-
-        BarData lineData = new BarData(dataSet);
-        chart.setData(lineData);
-
-        LimitLine ll = new LimitLine(40f, "Systolic Systolic Systolic Systolic Systolic ");
-        ll.setLineColor(Color.GREEN);
-        ll.setLineWidth(20f);
-
-        ll.setTextColor(Color.CYAN);
-        ll.setTextSize(12f);
-        chart.getAxisLeft().addLimitLine(ll);
-        chart.getAxisLeft().setDrawLimitLinesBehindData(true);
-
-
-//        chart.setScaleEnabled(false);
-//        chart.setDrawGridBackground(false);
-        chart.invalidate(); // refresh
-*/
-
         return view;
     }
+
+    private void setFeedbackExtra(Intent intent){
+        intent.putExtra("feedbackList", feedbackList);
+        Log.d("fromfeedback_weights", feedbackList.toString());
+    }
+
+    public class WeeklyFeedbackData implements Serializable{
+        public int id, user_id, week, total_active_min;
+        public float avg_weight, avg_steps, height;
+
+        public WeeklyFeedbackData(int id, int user_id, int week, int total_active_min, float avg_weight, float avg_steps, float height) {
+            this.id = id;
+            this.user_id = user_id;
+            this.week = week;
+            this.total_active_min = total_active_min;
+            this.avg_weight = avg_weight;
+            this.avg_steps = avg_steps;
+            this.height = height;
+        }
+
+        @Override
+        public String toString() {
+            return "WeeklyFeedbackData{" +
+                    "user_id=" + user_id +
+                    ", week=" + week +
+                    ", total_active_min=" + total_active_min +
+                    ", avg_weight=" + avg_weight +
+                    ", avg_steps=" + avg_steps +
+                    ", height=" + height +
+                    '}';
+        }
+    }
+
+    private void feedbackJsonToList(String json){
+        Log.d("feedbackjson", json);
+        json = json.substring(json.indexOf("["), json.lastIndexOf("]") + 1);
+        Log.d("feedbackjson", json);
+
+        Gson g = new Gson();
+
+//        WeeklyFeedbackData data = g.fromJson(json, WeeklyFeedbackData.class);
+//        feedbackList.add(data);
+        WeeklyFeedbackData[] mcArray = g.fromJson(json, WeeklyFeedbackData[].class);
+        feedbackList = new ArrayList<>(Arrays.asList(mcArray));
+
+
+        Log.d("feedbackjson", feedbackList.toString());
+    }
+
+    private class JsonTask extends AsyncTask<String, String, String> {
+        final String feedbackDataURL = "http://jhprohealth.herokuapp.com/polls/get_feedback/" + patientID + "/";
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            pd = new ProgressDialog(getContext());
+            pd.setMessage("Please wait");
+            pd.setCancelable(false);
+            pd.show();
+        }
+
+        protected String doInBackground(String... params) {
+
+
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+
+            try {
+                URL url = new URL(feedbackDataURL);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+
+                InputStream stream = connection.getInputStream();
+
+                reader = new BufferedReader(new InputStreamReader(stream));
+
+                StringBuffer buffer = new StringBuffer();
+                String line = "";
+
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line+"\n");
+                    Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
+
+                }
+                feedbackJsonToList(buffer.toString());
+                return buffer.toString();
+
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if (pd.isShowing()){
+                pd.dismiss();
+            }
+//            TODO: remove settext for prod
+//            txtJson.setText(result);
+        }
+    }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
