@@ -2,12 +2,14 @@ package com.akim77.hopkinshealth.viewHolders;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +21,16 @@ import com.akim77.hopkinshealth.R;
 import com.akim77.hopkinshealth.SubmissionManager;
 import com.akim77.hopkinshealth.WeightActivity;
 import com.akim77.hopkinshealth.fragments.DynamicSurveyFragment;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import static com.akim77.hopkinshealth.MyApplication.getContext;
 
 /**
  * Created by anthony on 12/29/17.
@@ -55,12 +67,28 @@ public class SubmitButtonViewHolder extends RecyclerView.ViewHolder {
                     final String dataUrl = buildSubmitUrl(patientID);
                     Log.d("Sending data as1", dataUrl);
 
+                    final AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
+
                     Thread thread = new Thread(new Runnable() {
                         @Override
                         public void run() {
                             try  {
                                 Log.d("Sending data as2", dataUrl);
-                                OAuthHandler.instance.makePlainHttpCall(dataUrl);
+                                String callResponse = OAuthHandler.instance.makePlainHttpCall(dataUrl);
+                                builder1.setMessage(callResponse);
+                                builder1.setCancelable(true);
+
+                                builder1.setPositiveButton(
+                                        "Okay",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                AlertDialog alert11 = builder1.create();
+                                alert11.show();
+//                                JsonTask.execute();
                                 //Your code goes here
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -70,9 +98,10 @@ public class SubmitButtonViewHolder extends RecyclerView.ViewHolder {
 
                     thread.start();
 
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
                     Log.d("surveysubmitbutton", "pressed!!!");
-                    builder1.setMessage("Survey has been sent. Thank you.");
+                    builder1.setMessage("Survey submitting...\nPlease allow 10 seconds before closing the app.\nThank you.");
+
+
                     builder1.setCancelable(true);
 
                     builder1.setPositiveButton(
@@ -85,6 +114,8 @@ public class SubmitButtonViewHolder extends RecyclerView.ViewHolder {
 
                     AlertDialog alert11 = builder1.create();
                     alert11.show();
+
+
 
 
                     SubmissionManager.instance.clearEntries();
@@ -105,6 +136,7 @@ public class SubmitButtonViewHolder extends RecyclerView.ViewHolder {
                     AlertDialog alert11 = builder1.create();
                     alert11.show();
 
+
                 }
 
             }
@@ -119,7 +151,6 @@ public class SubmitButtonViewHolder extends RecyclerView.ViewHolder {
         Log.d("Sending data as" , url);
         return url;
     }
-
 
 
     protected void sendEmail(Context context) {

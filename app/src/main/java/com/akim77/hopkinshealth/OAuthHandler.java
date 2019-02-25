@@ -1,16 +1,21 @@
 package com.akim77.hopkinshealth;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+
+import static com.akim77.hopkinshealth.MyApplication.getContext;
 
 /**
  * Created by anthony on 1/29/18.
@@ -177,6 +182,10 @@ public class OAuthHandler {
         }
         return inputLine;
     }
+
+
+
+
 
 //
 //    @Override
