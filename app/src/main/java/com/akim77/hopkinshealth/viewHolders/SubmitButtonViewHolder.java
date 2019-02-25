@@ -97,6 +97,7 @@ public class SubmitButtonViewHolder extends RecyclerView.ViewHolder {
                     });
 
                     thread.start();
+//                    
 
                     Log.d("surveysubmitbutton", "pressed!!!");
                     builder1.setMessage("Survey submitting...\nPlease allow 10 seconds before closing the app.\nThank you.");
